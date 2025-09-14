@@ -5,7 +5,6 @@ include_once(__DIR__ . "/componentes/configuracao-da-pagina.php");
 <title>Adotaí | Entrar</title>
 </head>
 
-
 <body>
   <section class="container elementos-entrar d-flex flex-column align-items-center">
     <img src="./../util/logo-inteira.png" class="col-lg-2 col-4">
@@ -52,8 +51,10 @@ include_once(__DIR__ . "/componentes/configuracao-da-pagina.php");
     const apenasOsNumeros = numeroFormatado.replace(/\D/g, "");
 
     if (apenasOsNumeros.length === 10) {
+      // Formata para "(xx) xxxx-xxxx".
       numeroFormatado = apenasOsNumeros.replace(/(\d{2})(\d{4})(\d{4})/, "($1) $2-$3");
     } else if (apenasOsNumeros.length === 11) {
+      // Formata para "(xx) xxxxx-xxxx".
       numeroFormatado = apenasOsNumeros.replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
     } else if (apenasOsNumeros.length > 11) {
       numeroFormatado = numeroFormatado.replace(/[\-\(\)\s]/g, "");
