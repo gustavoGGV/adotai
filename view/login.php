@@ -7,15 +7,15 @@ include_once(__DIR__ . "/componentes/configuracao-da-pagina.php");
 
 <body>
   <section class="container elementos-entrar d-flex flex-column align-items-center">
-    <img src="./../util/logo-inteira.png" class="col-lg-2 col-4">
+    <img src="/adotai/util/logo-inteira.png" class="col-lg-2 col-4">
     <div class="d-flex justify-content-center p-3 w-100">
-      <div class="login card col-lg-4 col-10">
-        <div class="cabeca-login card-header text-white">
+      <div class="entrar card col-lg-4 col-10">
+        <div class="cabeca-entrar card-header text-white">
           <h1>Entrar</h1>
         </div>
         <div class="card-body d-flex justify-content-center p-4">
           <div class="form-group w-100">
-            <form target="" method="post" class="d-flex flex-column align-items-center">
+            <form action="/adotai/view/acoes/entrar.php" method="post" class="d-flex flex-column align-items-center">
               <div class="col-12">
                 <span class="text-white col-6">Número de telefone</span>
                 <input type="text" id="input-numero" class="col-12 form-control">
@@ -29,7 +29,7 @@ include_once(__DIR__ . "/componentes/configuracao-da-pagina.php");
                 <a href="" class="text-white">Esqueceu sua senha?</a>
               </div>
               <div class="mt-4 col-6">
-                <button class="col-12 btn bg-white">Entrar</button>
+                <button class="col-12 btn bg-white" id="botao-entrar" type="submit">Entrar</button>
               </div>
             </form>
           </div>

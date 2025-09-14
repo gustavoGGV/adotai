@@ -9,12 +9,9 @@ body {
   overflow-y: auto;
 }
 
-.elementos-entrar {
+.elementos-entrar,
+.elementos-cadastrar {
   transform: translate(0%, 15%);
-}
-
-* {
-  color: #382110;
 }
 
 a {
@@ -26,18 +23,13 @@ a:hover {
   text-decoration: underline;
 }
 
-footer {
+footer,
+.entrar,
+.cadastrar {
   background-color: #d96b3d;
 }
 
-.login {
-  background-color: #d96b3d;
-}
-
-.login .cabeca-login {
-  background-color: #382110;
-}
-
-.login .botao-login {
+.entrar .cabeca-entrar,
+.cadastrar .cabeca-cadastrar {
   background-color: #382110;
 }
