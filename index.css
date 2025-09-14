@@ -4,6 +4,15 @@ Primária: #d96b3d
 Secundária: #382110
 */
 
+body {
+  height: 100vh;
+  overflow-y: auto;
+}
+
+.elementos-entrar {
+  transform: translate(0%, 15%);
+}
+
 * {
   color: #382110;
 }
@@ -19,4 +28,16 @@ a:hover {
 
 footer {
   background-color: #d96b3d;
+}
+
+.login {
+  background-color: #d96b3d;
+}
+
+.login .cabeca-login {
+  background-color: #382110;
+}
+
+.login .botao-login {
+  background-color: #382110;
 }
