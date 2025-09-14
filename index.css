@@ -1,0 +1,22 @@
+/*
+Cores
+Primária: #d96b3d
+Secundária: #382110
+*/
+
+* {
+  color: #382110;
+}
+
+a {
+  text-decoration: none;
+  color: #382110;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+footer {
+  background-color: #d96b3d;
+}
