@@ -65,6 +65,7 @@ include_once(__DIR__ . "/componentes/configuracao-da-pagina.php");
 
 <script>
   const inputNumero = document.getElementById("input-numero");
+  const inputCep = document.getElementById("input-cep");
 
   inputNumero.addEventListener("input", () => {
     let numeroFormatado = inputNumero.value;
@@ -78,12 +79,23 @@ include_once(__DIR__ . "/componentes/configuracao-da-pagina.php");
     } else if (apenasOsNumeros.length === 11) {
       // Formata para "(xx) xxxxx-xxxx".
       numeroFormatado = apenasOsNumeros.replace(/(\d{2})(\d{5})(\d{4})/, "($1) $2-$3");
-    } else if (apenasOsNumeros.length > 11) {
-      numeroFormatado = numeroFormatado.replace(/[\-\(\)\s]/g, "");
     }
 
     inputNumero.value = numeroFormatado;
   });
+
+  inputCep.addEventListener("input", () => {
+    let cepFormatado = inputCep.value;
+    // Proibir o usuário de digitar caracteres que não sejam números e hífens.
+    cepFormatado = cepFormatado.replace(/[^\d-]/g, "");
+    const apenasOsNumeros = cepFormatado.replace(/\D/g, "");
+
+    if (apenasOsNumeros.length === 8) {
+      cepFormatado = apenasOsNumeros.replace(/(\d{5})(\d{2})/, "$1-$2");
+    }
+
+    inputCep.value = cepFormatado;
+  })
 </script>
 
 </html>

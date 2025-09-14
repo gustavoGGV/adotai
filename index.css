@@ -9,9 +9,12 @@ body {
   overflow-y: auto;
 }
 
-.elementos-entrar,
-.elementos-cadastrar {
+.elementos-entrar {
   transform: translate(0%, 15%);
+}
+
+.elementos-cadastrar {
+  transform: translate(0%, 10%);
 }
 
 a {
