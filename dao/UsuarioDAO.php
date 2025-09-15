@@ -13,13 +13,21 @@ class UsuarioDAO
 
   public function inserirUsuario(Usuario $usuario)
   {
+    $telefoneJaExiste = $this->telefoneJaExiste($usuario->getTelefoneUsu());
+    if ($telefoneJaExiste === true) {
+      // Erro 2: telefone já existe no banco.
+      return 2;
+    }
+
     try {
       $sql = "INSERT INTO Usuario (idUsu, nomeUsu, dataNascimentoUsu, cepUsu, complementoUsu, senhaUsu, telefoneUsu, tipoUsu) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
       $stm = $this->conexao->prepare($sql);
       $stm->execute([$usuario->getIdUsu(), $usuario->getNomeUsu(), $usuario->getDataNascimentoUsu(), $usuario->getCepUsu(), $usuario->getComplementoUsu(), $usuario->getSenhaUsu(), $usuario->getTelefoneUsu(), $usuario->getTipoUsu()]);
 
+      // Sem erro.
       return null;
     } catch (PDOException $e) {
+      // Erro 1: falha na inserção.
       return $e;
     }
   }
@@ -45,5 +53,19 @@ class UsuarioDAO
     } catch (PDOException $e) {
       return $e;
     }
+  }
+
+  public function telefoneJaExiste(string $numero)
+  {
+    $sql = "SELECT * FROM Usuario WHERE telefoneUsu = ?";
+    $stm = $this->conexao->prepare($sql);
+    $stm->execute([$numero]);
+    $usuarios = $stm->fetchAll();
+
+    if (count($usuarios) > 0) {
+      return true;
+    }
+
+    return false;
   }
 }
