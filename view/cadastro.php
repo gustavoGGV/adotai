@@ -52,9 +52,11 @@ include_once(__DIR__ . "/componentes/configuracao-da-pagina.php");
                   </div>
                 </div>
               </div>
-              <div class="mt-3 text-white p-2">
-                <?= $mensagensDeInvalidade ?>
-              </div>
+              <?php if ($mensagensDeInvalidade): ?>
+                <div class="mt-3 text-white p-2">
+                  <?= $mensagensDeInvalidade ?>
+                </div>
+              <?php endif; ?>
               <div class="mt-4 col-12 d-flex justify-content-center">
                 <button class="col-6 btn bg-white" id="botao-cadastrar" type="submit">Cadastrar-se</button>
               </div>
