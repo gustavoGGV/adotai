@@ -1,4 +1,5 @@
 <?php
+include_once(__DIR__ . "/acoes/entrar.php");
 include_once(__DIR__ . "/componentes/configuracao-da-pagina.php");
 ?>
 
@@ -15,15 +16,20 @@ include_once(__DIR__ . "/componentes/configuracao-da-pagina.php");
         </div>
         <div class="card-body d-flex justify-content-center p-4">
           <div class="form-group w-100">
-            <form action="/adotai/view/acoes/entrar.php" method="post" class="d-flex flex-column align-items-center">
+            <form action="" method="post" class="d-flex flex-column align-items-center">
               <div class="col-12">
                 <span class="text-white col-6">Número de telefone</span>
-                <input type="text" id="input-numero" name="input-numero" placeholder="informe seu número..." class="col-12 form-control">
+                <input value="<?= $numero ? $numero : null ?>" type="text" id="input-numero" name="input-numero" placeholder="informe seu número..." class="col-12 form-control">
               </div>
               <div class="mt-4 col-12">
                 <span class="text-white">Senha</span>
                 <input type="password" id="input-senha" name="input-senha" placeholder="informe sua senha..." class="col-12 form-control">
               </div>
+              <?php if ($invalido): ?>
+                <div class="text-white mt-3 col-12">
+                  O número de telefone e/ou a senha está incorreta!
+                </div>
+              <?php endif; ?>
               <div class="mt-3 col-12">
                 <a href="/adotai/view/cadastro.php" class="text-white text-decoration-none">Não é cadastrado?</a><br>
                 <a href="" class="text-white text-decoration-none">Esqueceu sua senha?</a>
