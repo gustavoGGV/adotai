@@ -31,4 +31,11 @@ class UsuarioController
 
     return $invalidades;
   }
+
+  public function encontrarUsuario($numero, $senha)
+  {
+    $usuario = $this->usuarioDAO->encontrarUsuario($numero, $senha);
+
+    return $usuario;
+  }
 }
