@@ -32,7 +32,7 @@ CREATE TABLE Usuario (
     cepUsu VARCHAR(9) NOT NULL,
     complementoUsu VARCHAR(50),
     senhaUsu TEXT NOT NULL,
-    telefoneUsu VARCHAR(12) NOT NULL,
+    telefoneUsu VARCHAR(15) NOT NULL,
     tipoUsu ENUM("c", "a") NOT NULL
 );
 
