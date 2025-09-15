@@ -11,7 +11,7 @@ class UsuarioController
   public function __construct()
   {
     $this->usuarioDAO = new UsuarioDAO();
-    $this->usuarioService = new UsuarioService;
+    $this->usuarioService = new UsuarioService();
   }
 
   public function inserirUsuario(Usuario $usuario)
@@ -21,11 +21,13 @@ class UsuarioController
       return $invalidades;
     }
 
-    $erroDoBanco = $this->usuarioDAO->inserirUsuario($usuario);
-    if ($erroDoBanco) {
+    $erro = $this->usuarioDAO->inserirUsuario($usuario);
+    if ($erro === 2) {
+      array_push($invalidades, "Já existe um usuário com este número de telefone!");
+    } else if ($erro) {
       array_push($invalidades, "Erro ao salvar o usuário no banco de dados");
       if (AMBIENTE_DEV) {
-        array_push($invalidades, $erroDoBanco);
+        array_push($invalidades, $erro);
       }
     }
 
@@ -37,5 +39,12 @@ class UsuarioController
     $usuario = $this->usuarioDAO->encontrarUsuario($numero, $senha);
 
     return $usuario;
+  }
+
+  public function telefoneJaExiste($numero)
+  {
+    $jaExiste = $this->usuarioDAO->telefoneJaExiste($numero);
+
+    return $jaExiste;
   }
 }
