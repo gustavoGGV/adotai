@@ -18,15 +18,15 @@ include_once(__DIR__ . "/componentes/configuracao-da-pagina.php");
             <form action="/adotai/view/acoes/entrar.php" method="post" class="d-flex flex-column align-items-center">
               <div class="col-12">
                 <span class="text-white col-6">Número de telefone</span>
-                <input type="text" id="input-numero" class="col-12 form-control">
+                <input type="text" id="input-numero" name="input-numero" placeholder="informe seu número..." class="col-12 form-control">
               </div>
               <div class="mt-4 col-12">
                 <span class="text-white">Senha</span>
-                <input type="password" class="col-12 form-control">
+                <input type="password" id="input-senha" name="input-senha" placeholder="informe sua senha..." class="col-12 form-control">
               </div>
               <div class="mt-3 col-12">
-                <a href="./cadastro.php/" class="text-white">Não é cadastrado?</a><br>
-                <a href="" class="text-white">Esqueceu sua senha?</a>
+                <a href="/adotai/view/cadastro.php" class="text-white text-decoration-none">Não é cadastrado?</a><br>
+                <a href="" class="text-white text-decoration-none">Esqueceu sua senha?</a>
               </div>
               <div class="mt-4 col-6">
                 <button class="col-12 btn bg-white" id="botao-entrar" type="submit">Entrar</button>
