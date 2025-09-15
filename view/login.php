@@ -25,9 +25,9 @@ include_once(__DIR__ . "/componentes/configuracao-da-pagina.php");
                 <span class="text-white">Senha</span>
                 <input type="password" id="input-senha" name="input-senha" placeholder="informe sua senha..." class="col-12 form-control">
               </div>
-              <?php if ($invalido): ?>
+              <?php if ($erro): ?>
                 <div class="text-white mt-3 col-12">
-                  O número de telefone e/ou a senha está incorreta!
+                  <?= $erro ?>
                 </div>
               <?php endif; ?>
               <div class="mt-3 col-12">

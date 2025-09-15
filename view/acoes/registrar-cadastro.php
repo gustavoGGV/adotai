@@ -22,7 +22,7 @@ function guidv4()
 }
 
 $usuario = null;
-$mensagensDeInvalidade = "";
+$mensagensDeInvalidade = null;
 
 if (isset($_POST["input-numero"])) {
   $nomeUsu = trim($_POST["input-nome"]) ? trim($_POST["input-nome"]) : null;
