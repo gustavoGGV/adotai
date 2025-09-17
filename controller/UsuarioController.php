@@ -34,14 +34,21 @@ class UsuarioController
     return $invalidades;
   }
 
-  public function encontrarUsuario($numero, $senha)
+  public function encontrarUsuarioComTelefoneSenha(string $numero, string $senha)
   {
-    $usuario = $this->usuarioDAO->encontrarUsuario($numero, $senha);
+    $usuario = $this->usuarioDAO->encontrarUsuarioComTelefoneSenha($numero, $senha);
 
     return $usuario;
   }
 
-  public function telefoneJaExiste($numero)
+  public function encontrarUsuarioPorId(string $id)
+  {
+    $usuario = $this->usuarioDAO->encontrarUsuarioPorId($id);
+
+    return $usuario;
+  }
+
+  public function telefoneJaExiste(string $numero)
   {
     $jaExiste = $this->usuarioDAO->telefoneJaExiste($numero);
 

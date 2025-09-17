@@ -32,7 +32,7 @@ class UsuarioDAO
     }
   }
 
-  public function encontrarUsuario(string $numero, string $senha)
+  public function encontrarUsuarioComTelefoneSenha(string $numero, string $senha)
   {
     try {
       $sql = "SELECT * FROM Usuario WHERE telefoneUsu = ?";
@@ -43,13 +43,29 @@ class UsuarioDAO
       if ($usuario) {
         $saoSenhasIguais = password_verify($senha, $usuario[0]["senhaUsu"]);
         if ($saoSenhasIguais) {
-          return true;
+          return $usuario[0];
         }
-
-        return false;
-      } else {
-        return false;
       }
+
+      return false;
+    } catch (PDOException $e) {
+      return $e;
+    }
+  }
+
+  public function encontrarUsuarioPorId(string $id)
+  {
+    try {
+      $sql = "SELECT * FROM Usuario WHERE idUsu = ?";
+      $stm = $this->conexao->prepare($sql);
+      $stm->execute([$id]);
+      $usuario = $stm->fetchAll();
+
+      if (count($usuario) === 1) {
+        return $usuario[0];
+      }
+
+      return false;
     } catch (PDOException $e) {
       return $e;
     }
