@@ -1,6 +1,6 @@
 <?php
 include_once(__DIR__ . "/acoes/registrar-cadastro.php");
-include_once(__DIR__ . "/componentes/configuracao-da-pagina.php");
+include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
 ?>
 
 <title>Adotaí | Cadastrar-se</title>

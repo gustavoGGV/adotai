@@ -1,6 +1,6 @@
 <?php
 include_once(__DIR__ . "/acoes/adquirir-informacao-do-usuario.php");
-include_once(__DIR__ . "/componentes/configuracao-da-pagina.php");
+include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
 ?>
 
 <title>Adotaí | Perfil</title>
@@ -13,4 +13,4 @@ include_once(__DIR__ . "/componentes/configuracao-da-pagina.php");
 </body>
 
 <?php
-include_once(__DIR__ . "/componentes/footer.php");
+include_once(__DIR__ . "/componentes/footer.html");
