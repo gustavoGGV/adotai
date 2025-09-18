@@ -1,0 +1,10 @@
+<div class="navbar d-flex flex-row align-items-center mb-5 p-lg-3 p-2">
+  <a href="/adotai/view/pagina-principal.php" class="col-lg-2 col-6 text-decoration-none">
+    <img src="/adotai/util/desenho.png" class="w-25">
+    <img src="/adotai/util/escrita.png" class="w-50 d-none d-lg-inline">
+  </a>
+  <a href="/adotai/view/perfil.php" class="col-4 col-lg-3 d-flex text-white justify-content-end align-items-center">
+    <h1><i class="bi bi-person-circle me-2"></i></h1>
+    <h3 class="mb-2 float-end text-end d-none d-lg-inline">Olá <?= explode(" ", $usuario["nomeUsu"])[0] . ($usuario["tipoUsu"] === "a" ? " (ADMIN)" : null) ?>!</h3>
+  </a>
+</div>
