@@ -4,7 +4,6 @@ include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
 
 if ($usuario):
 ?>
-
   <title>Adotaí | Pagina principal</title>
   </head>
 
