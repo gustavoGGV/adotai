@@ -1,6 +1,10 @@
 <?php
 include_once(__DIR__ . "/acoes/entrar.php");
 include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
+
+if ($_COOKIE["idUsu"]) {
+  header("location: /adotai/view/pagina-principal.php");
+}
 ?>
 
 <title>Adotaí | Entrar</title>
