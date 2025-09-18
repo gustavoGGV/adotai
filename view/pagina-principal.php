@@ -9,7 +9,7 @@ if ($usuario):
   </head>
 
   <body>
-    <?php include_once(__DIR__ . "/componentes/navbar.php") ?>
+    <?php include_once(__DIR__ . "/componentes/navbar.html") ?>
   </body>
 <?php
   include_once(__DIR__ . "/componentes/footer.php");

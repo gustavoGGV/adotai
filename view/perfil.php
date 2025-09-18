@@ -6,9 +6,11 @@ include_once(__DIR__ . "/componentes/configuracao-da-pagina.php");
 <title>Adotaí | Perfil</title>
 </head>
 
-<?php
-include_once(__DIR__ . "/componentes/navbar.php");
-?>
+<body>
+  <?php
+  include_once(__DIR__ . "/componentes/navbar.html");
+  ?>
+</body>
 
 <?php
 include_once(__DIR__ . "/componentes/footer.php");
