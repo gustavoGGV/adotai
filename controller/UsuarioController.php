@@ -34,6 +34,24 @@ class UsuarioController
     return $invalidades;
   }
 
+  public function alterarInformacoesUsuario(Usuario $usuario, bool $alteracaoDeSenha, string $inputSenhaAtual, string $hashSenhaAtual)
+  {
+    $invalidades = $this->validarInformacoesUsuario($usuario, true, $alteracaoDeSenha, $inputSenhaAtual, $hashSenhaAtual);
+    if ($invalidades) {
+      return $invalidades;
+    }
+
+    $erro = $this->usuarioDAO->alterarInformacoesUsuario($usuario, $alteracaoDeSenha);
+    if ($erro) {
+      array_push($invalidades, "Erro ao alterar as informações do usuário no banco de dados");
+      if (AMBIENTE_DEV) {
+        array_push($invalidades, $erro);
+      }
+    }
+
+    return $invalidades;
+  }
+
   public function validarInformacoesUsuario(Usuario $usuario, bool $alteracao, bool $alteracaoDeSenha, string $inputSenhaAtual, string $hashSenhaAtual)
   {
     $invalidades = $this->usuarioService->validarUsuario($usuario, $alteracao, $alteracaoDeSenha, $inputSenhaAtual, $hashSenhaAtual);

@@ -3,8 +3,8 @@ require_once(__DIR__ . "/../../controller/UsuarioController.php");
 
 $usuarioController = new UsuarioController();
 
-$usuario = array();
-if ($_COOKIE["idUsu"]) {
+$usuario = null;
+if ($_COOKIE) {
   $usuario = $usuarioController->encontrarUsuarioPorId($_COOKIE["idUsu"]);
 
   if ($usuario instanceof PDOException) {

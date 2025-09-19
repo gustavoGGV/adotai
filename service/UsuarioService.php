@@ -34,7 +34,7 @@ class UsuarioService
       array_push($invalidades, "Seu CEP deve conter 9 caracteres!");
     }
 
-    if (strlen($usuario->getComplementoUsu()) > 50) {
+    if ($usuario->getComplementoUsu() && strlen($usuario->getComplementoUsu()) > 50) {
       array_push($invalidades, "O complemento de endereço não deve conter mais que 50 caracteres!");
     }
 

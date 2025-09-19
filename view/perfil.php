@@ -3,7 +3,9 @@ include_once(__DIR__ . "/acoes/adquirir-informacao-do-usuario.php");
 include_once(__DIR__ . "/acoes/alterar-cadastro.php");
 include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
 
-if ($usuario):
+if (!$usuario):
+  header("location: /adotai/view/login.php");
+else:
 ?>
   <title>Adotaí | Perfil</title>
   </head>
@@ -12,21 +14,20 @@ if ($usuario):
     <?php
     include_once(__DIR__ . "/componentes/navbar.html");
     ?>
-    <div class="container d-flex flex-row position-relative">
-      <div class="imagem-usuario col-3">
+    <form action="" method="post" class="container d-flex flex-lg-row flex-column position-relative">
+      <div class="imagem-perfil-usuario col-lg-3 col-12">
         <div class="imagem-usuario-container d-flex justify-content-center">
-          <img src="/adotai/util/user-cachorro.png" class="w-75 ms-2">
+          <img src="/adotai/util/user-cachorro.png" id="imagem-perfil" class="w-lg-75 ms-lg-2">
         </div>
         <div class="selecionar-imagem-perfil d-flex justify-content-center mt-4">
-          <span class="text-black">Cachorro</span>
-          <input type="radio" name="input-imagem-cachorro" id="input-imagem-cachorro" class="ms-1">
-          <span class="text-black ms-3">Gato</span>
-          <input type="radio" name="input-imagem-gato" id="input-imagem-gato" class="ms-1">
+            <span class="text-black">Cachorro</span>
+            <input type="radio" value="c" name="input-imagem-cachorro" id="input-imagem-cachorro" class="ms-1" <?= $usuario["tipoImagemPerfilUsu"] === "c" ? "checked" : null ?>>
+            <span class="text-black ms-3">Gato</span>
+            <input type="radio" value="g" name="input-imagem-gato" id="input-imagem-gato" class="ms-1" <?= $usuario["tipoImagemPerfilUsu"] === "g" ? "checked" : null ?>>
         </div>
       </div>
-      <div class="vr col-1"></div>
-      <div class="informacoes-usuario col-8 p-5">
-        <form action="" method="post">
+      <div class="vr d-none d-lg-block col-1"></div>
+      <div class="informacoes-usuario col-lg-8 col-12 p-5">
           <div class="d-flex flex-column">
             <div class="col-12">
               <span class="text-black col-6">Nome</span>
@@ -69,9 +70,8 @@ if ($usuario):
           <div class="mt-5 col-12 d-flex justify-content-center">
             <button class="botao-alterar col-6 btn text-white" id="botao-alterar" type="submit">Alterar informações</button>
           </div>
-        </form>
       </div>
-    </div>
+    </form>
   </body>
   <?php
   include_once(__DIR__ . "/componentes/footer.html");
@@ -121,11 +121,33 @@ if ($usuario):
       confirmacaoSenhaNova.style.display = "block";
       senhaAtual.style.display = "block";
     })
+
+    const imagemPefil = document.getElementById("imagem-perfil");
+    const inputImagemCachorro = document.getElementById("input-imagem-cachorro");
+    const inputImagemGato = document.getElementById("input-imagem-gato");
+
+    if(inputImagemCachorro.checked){
+      imagemPefil.src = "/adotai/util/user-cachorro.png";
+    } else {
+      imagemPefil.src = "/adotai/util/user-gato.png";
+    }
+
+    inputImagemCachorro.addEventListener("change", () => {
+      if (inputImagemCachorro.checked) {
+        imagemPefil.src = "/adotai/util/user-cachorro.png";
+        inputImagemGato.checked = false;
+      }
+    })
+
+    inputImagemGato.addEventListener("change", () => {
+      if (inputImagemGato.checked) {
+        imagemPefil.src = "/adotai/util/user-gato.png";
+        inputImagemCachorro.checked = false;
+      }
+    })
   </script>
 
   </html>
 
 <?php
-else:
-  header("location: /adotai/view/login.php");
 endif;

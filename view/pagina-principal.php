@@ -2,7 +2,9 @@
 include_once(__DIR__ . "/acoes/adquirir-informacao-do-usuario.php");
 include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
 
-if ($usuario):
+if (!$usuario):
+  header("location: /adotai/view/login.php");
+else:
 ?>
   <title>Adotaí | Pagina principal</title>
   </head>
@@ -12,6 +14,4 @@ if ($usuario):
   </body>
 <?php
   include_once(__DIR__ . "/componentes/footer.html");
-else:
-  header("location: /adotai/view/login.php");
 endif;
