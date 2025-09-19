@@ -6,7 +6,7 @@ define("DB_USER", "root");
 define("DB_SENHA", "sounoob");
 
 // Ambiente DEV
-define("AMBIENTE_DEV", false);
+define("AMBIENTE_DEV", true);
 
 // Mostrar erros do PHP
 if (AMBIENTE_DEV) {

@@ -16,7 +16,7 @@ class UsuarioController
 
   public function inserirUsuario(Usuario $usuario)
   {
-    $invalidades = $this->usuarioService->validarUsuario($usuario);
+    $invalidades = $this->validarInformacoesUsuario($usuario, false, false, "", "");
     if ($invalidades) {
       return $invalidades;
     }
@@ -30,6 +30,13 @@ class UsuarioController
         array_push($invalidades, $erro);
       }
     }
+
+    return $invalidades;
+  }
+
+  public function validarInformacoesUsuario(Usuario $usuario, bool $alteracao, bool $alteracaoDeSenha, string $inputSenhaAtual, string $hashSenhaAtual)
+  {
+    $invalidades = $this->usuarioService->validarUsuario($usuario, $alteracao, $alteracaoDeSenha, $inputSenhaAtual, $hashSenhaAtual);
 
     return $invalidades;
   }

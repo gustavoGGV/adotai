@@ -33,7 +33,8 @@ CREATE TABLE Usuario (
     complementoUsu VARCHAR(50),
     senhaUsu TEXT NOT NULL,
     telefoneUsu VARCHAR(15) NOT NULL,
-    tipoUsu ENUM("c", "a") NOT NULL
+    tipoUsu ENUM("c", "a") NOT NULL,
+    tipoImagemPerfilUsu ENUM("c", "g") NOT NULL
 );
 
 INSERT INTO Especie VALUES

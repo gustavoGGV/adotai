@@ -20,9 +20,9 @@ class UsuarioDAO
     }
 
     try {
-      $sql = "INSERT INTO Usuario (idUsu, nomeUsu, dataNascimentoUsu, cepUsu, complementoUsu, senhaUsu, telefoneUsu, tipoUsu) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
+      $sql = "INSERT INTO Usuario (idUsu, nomeUsu, dataNascimentoUsu, cepUsu, complementoUsu, senhaUsu, telefoneUsu, tipoUsu, tipoImagemPerfilUsu) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
       $stm = $this->conexao->prepare($sql);
-      $stm->execute([$usuario->getIdUsu(), $usuario->getNomeUsu(), $usuario->getDataNascimentoUsu(), $usuario->getCepUsu(), $usuario->getComplementoUsu(), $usuario->getSenhaUsu(), $usuario->getTelefoneUsu(), $usuario->getTipoUsu()]);
+      $stm->execute([$usuario->getIdUsu(), $usuario->getNomeUsu(), $usuario->getDataNascimentoUsu(), $usuario->getCepUsu(), $usuario->getComplementoUsu(), $usuario->getSenhaUsu(), $usuario->getTelefoneUsu(), $usuario->getTipoUsu(), $usuario->getTipoImagemPerfilUsu()]);
 
       // Sem erro.
       return null;
