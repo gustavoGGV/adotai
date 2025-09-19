@@ -32,6 +32,22 @@ class UsuarioDAO
     }
   }
 
+  public function alterarInformacoesUsuario(Usuario $usuario, bool $alteracaoDeSenha) {
+    try {
+      $sql = "UPDATE Usuario SET nomeUsu = ?, telefoneUsu = ?, dataNascimentoUsu = ?, cepUsu = ?, complementoUsu = ?, tipoImagemPerfilUsu = ?" . ($alteracaoDeSenha ? ", senhaUsu = ?" : "") . " WHERE idUsu = ?";
+      $stm = $this->conexao->prepare($sql);
+      if ($alteracaoDeSenha) {
+        $stm->execute([$usuario->getNomeUsu(), $usuario->getTelefoneUsu(), $usuario->getDataNascimentoUsu(), $usuario->getCepUsu(), $usuario->getComplementoUsu(), $usuario->getTipoImagemPerfilUsu(), $usuario->getSenhaUsu(), $usuario->getIdUsu()]);
+      } else {
+        $stm->execute([$usuario->getNomeUsu(), $usuario->getTelefoneUsu(), $usuario->getDataNascimentoUsu(), $usuario->getCepUsu(), $usuario->getComplementoUsu(), $usuario->getTipoImagemPerfilUsu(), $usuario->getIdUsu()]);
+      }
+
+      return null;
+    } catch (PDOException $e) {
+      return $e;
+    }
+  }
+
   public function encontrarUsuarioComTelefoneSenha(string $numero, string $senha)
   {
     try {
