@@ -4,7 +4,7 @@ require_once(__DIR__ . "/../model/Usuario.php");
 
 class UsuarioService
 {
-  public function validarUsuario(Usuario $usuario)
+  public function validarUsuario(Usuario $usuario, bool $alteracao, bool $alteracaoDeSenha, string $inputSenhaAtual, string $hashSenhaAtual)
   {
     $invalidades = array();
 
@@ -38,12 +38,20 @@ class UsuarioService
       array_push($invalidades, "O complemento de endereço não deve conter mais que 50 caracteres!");
     }
 
-    if (!$usuario->getSenhaUsu()) {
+    if (!$usuario->getSenhaUsu() && !$alteracao) {
       array_push($invalidades, "Insira uma senha!");
-    } else if (!($usuario->getTamanhoSenhaUsu() > 8 && $usuario->getTamanhoSenhaUsu() < 30)) {
+    } else if ($usuario->getSenhaUsu() && !($usuario->getTamanhoSenhaUsu() > 8 && $usuario->getTamanhoSenhaUsu() < 30)) {
       array_push($invalidades, "Sua senha deve conter entre 8 e 30 caracteres!");
-    } else if ($usuario->getConfirmacaoSenhaUsu() === false) {
+    } else if ($usuario->getSenhaUsu() && $usuario->getConfirmacaoSenhaUsu() === false) {
       array_push($invalidades, "A confirmação de senha deve ser igual a sua senha!");
+    }
+
+    if ($alteracaoDeSenha) {
+      if (!password_verify($inputSenhaAtual, $hashSenhaAtual)) {
+        array_push($invalidades, "A senha atual está errada!");
+      } else if (password_verify($inputSenhaAtual, $usuario->getSenhaUsu())) {
+        array_push($invalidades, "A senha nova digitada é a mesma senha atual!");
+      }
     }
 
     if (!$usuario->getTelefoneUsu()) {

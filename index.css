@@ -4,6 +4,15 @@ Primária: #d96b3d
 Secundária: #382110
 */
 
+/* Esconder scroll bar. */
+* {
+  -ms-overflow-style: none; /* Internet Explorer 10+ */
+  scrollbar-width: none; /* Firefox, Safari 18.2+, Chromium 121+ */
+}
+*::-webkit-scrollbar {
+  display: none; /* Older Safari and Chromium */
+}
+
 body {
   height: 100vh;
   overflow-y: auto;
@@ -25,6 +34,14 @@ footer,
 }
 
 .entrar .cabeca-entrar,
-.cadastrar .cabeca-cadastrar {
+.cadastrar .cabeca-cadastrar,
+.botao-alterar,
+.botao-alterar:hover {
   background-color: #382110;
+}
+
+/* Estarão escondidas por padrão, sendo ativadas somente caso o usuário preencha o campo de senha nova. */
+#confirmacao-senha-nova,
+#senha-atual {
+  display: none;
 }

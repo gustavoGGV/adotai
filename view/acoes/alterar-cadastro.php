@@ -1,0 +1,49 @@
+<?php
+
+include_once(__DIR__ . "/adquirir-informacao-do-usuario.php");
+
+$alteracoesUsuario = null;
+// Desativada por padrão.
+$alteracaoDeSenha = false;
+$mensagensDeInvalidade = null;
+
+if (isset($_POST["input-numero"])) {
+  $nomeUsu = trim($_POST["input-nome"]) ? trim($_POST["input-nome"]) : null;
+  $dataNascimentoUsu = trim($_POST["input-data-nasc"]) ? trim($_POST["input-data-nasc"]) : null;
+  $cepUsu = trim($_POST["input-cep"]) ? trim($_POST["input-cep"]) : null;
+  $complementoUsu = trim($_POST["input-complemento"]) ? trim($_POST["input-complemento"]) : null;
+
+  // Apenas caso o usuário tenha preenchido o campo de senha nova.
+  if (trim($_POST["input-senha-nova"])) {
+    // Alteração de senha ativada.
+    $alteracaoDeSenha = true;
+
+    // Para o funcionamento da validação, não pode ser null.
+    $inputSenhaAtualUsu = trim($_POST["input-senha-atual"]) ? trim($_POST["input-senha-atual"]) : "";
+
+    $tamanhoSenhaNovaUsu = strlen(trim($_POST["input-senha-nova"]));
+    $senhaNovaUsu = trim($_POST["input-senha-nova"]) ? password_hash(trim($_POST["input-senha-nova"]), PASSWORD_DEFAULT) : null;
+    $confirmacaoSenhaNovaUsu = password_verify(trim($_POST["input-confirmacao-senha-nova"]), $senhaNovaUsu);
+  }
+
+  $telefoneUsu = trim($_POST["input-numero"]) ? trim($_POST["input-numero"]) : null;
+
+  $usuarioController = new UsuarioController();
+
+  if ($alteracaoDeSenha) {
+    $alteracoesUsuario = new Usuario(null, $nomeUsu, $telefoneUsu, $dataNascimentoUsu, $cepUsu, $complementoUsu, $senhaNovaUsu, $tamanhoSenhaNovaUsu, $confirmacaoSenhaNovaUsu, null);
+    $invalidades = $usuarioController->validarInformacoesUsuario($alteracoesUsuario, true, true, $inputSenhaAtualUsu, $usuario["senhaUsu"]);
+  } else {
+    // Preenche somente os atributos que são necessários.
+    $alteracoesUsuario = new Usuario(null, $nomeUsu, $telefoneUsu, $dataNascimentoUsu, $cepUsu, $complementoUsu, null, null, null, null);
+    // Passa strings vazinhas para as senhas, já que não serão consideradas para a validação.
+    $invalidades = $usuarioController->validarInformacoesUsuario($alteracoesUsuario, true, false, "", "");
+  }
+
+  if ($invalidades) {
+    // Junta todas as mensagens de invalidade dentro de uma string separadas por <br>.
+    $mensagensDeInvalidade = implode("<br>", $invalidades);
+  } else {
+    header("location: /adotai/view/pagina-principal.php");
+  }
+}

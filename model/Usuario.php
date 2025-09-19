@@ -12,8 +12,9 @@ class Usuario
   private ?int $tamanhoSenhaUsu;
   private ?bool $confimacaoSenhaUsu;
   private ?string $tipoUsu;
+  private ?string $tipoImagemPerfilUsu;
 
-  public function __construct($idUsu, $nomeUsu, $telefoneUsu, $dataNascimentoUsu, $cepUsu, $complementoUsu, $senhaUsu, $tamanhoSenhaUsu, $confimacaoSenhaUsu, $tipoUsu)
+  public function __construct($idUsu, $nomeUsu, $telefoneUsu, $dataNascimentoUsu, $cepUsu, $complementoUsu, $senhaUsu, $tamanhoSenhaUsu, $confimacaoSenhaUsu, $tipoUsu, $tipoImagemPerfilUsu)
   {
     $this->idUsu = $idUsu;
     $this->nomeUsu = $nomeUsu;
@@ -25,6 +26,7 @@ class Usuario
     $this->tamanhoSenhaUsu = $tamanhoSenhaUsu;
     $this->confimacaoSenhaUsu = $confimacaoSenhaUsu;
     $this->tipoUsu = $tipoUsu;
+    $this->tipoImagemPerfilUsu = $tipoImagemPerfilUsu;
   }
 
   public function getIdUsu(): ?string
@@ -75,5 +77,10 @@ class Usuario
   public function getTipoUsu(): ?string
   {
     return $this->tipoUsu;
+  }
+
+  public function getTipoImagemPerfilUsu(): ?string
+  {
+    return $this->tipoImagemPerfilUsu;
   }
 }

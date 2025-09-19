@@ -4,8 +4,6 @@ require_once(__DIR__ . "/../../util/Conexao.php");
 require_once(__DIR__ . "/../../model/Usuario.php");
 require_once(__DIR__ . "/../../controller/UsuarioController.php");
 
-ini_set('display_errors', 1);
-
 // Função que cria UUID's aleatórias.
 function guidv4()
 {
@@ -37,7 +35,7 @@ if (isset($_POST["input-numero"])) {
 
   $telefoneUsu = trim($_POST["input-numero"]) ? trim($_POST["input-numero"]) : null;
 
-  $usuario = new Usuario(guidv4(), $nomeUsu, $telefoneUsu, $dataNascimentoUsu, $cepUsu, $complementoUsu, $senhaUsu, $tamanhoSenhaUsu, $confirmacaoSenhaUsu, "c");
+  $usuario = new Usuario(guidv4(), $nomeUsu, $telefoneUsu, $dataNascimentoUsu, $cepUsu, $complementoUsu, $senhaUsu, $tamanhoSenhaUsu, $confirmacaoSenhaUsu, "c", "c");
 
   $usuarioController = new UsuarioController();
   $invalidades = $usuarioController->inserirUsuario($usuario);

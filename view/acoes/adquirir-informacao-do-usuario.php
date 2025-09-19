@@ -3,6 +3,7 @@ require_once(__DIR__ . "/../../controller/UsuarioController.php");
 
 $usuarioController = new UsuarioController();
 
+$usuario = array();
 if ($_COOKIE["idUsu"]) {
   $usuario = $usuarioController->encontrarUsuarioPorId($_COOKIE["idUsu"]);
 
