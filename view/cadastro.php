@@ -1,6 +1,11 @@
 <?php
 include_once(__DIR__ . "/acoes/registrar-cadastro.php");
+include_once(__DIR__ . "/acoes/adquirir-informacao-do-usuario.php");
 include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
+
+if ($usuario) {
+  header("location: /adotai/view/pagina-principal.php");
+}
 ?>
 
 <title>Adotaí | Cadastrar-se</title>
