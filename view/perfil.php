@@ -20,56 +20,59 @@ else:
           <img src="/adotai/util/user-cachorro.png" id="imagem-perfil" class="w-lg-75 ms-lg-2">
         </div>
         <div class="selecionar-imagem-perfil d-flex justify-content-center mt-4">
-            <span class="text-black">Cachorro</span>
-            <input type="radio" value="c" name="input-imagem-cachorro" id="input-imagem-cachorro" class="ms-1" <?= $usuario["tipoImagemPerfilUsu"] === "c" ? "checked" : null ?>>
-            <span class="text-black ms-3">Gato</span>
-            <input type="radio" value="g" name="input-imagem-gato" id="input-imagem-gato" class="ms-1" <?= $usuario["tipoImagemPerfilUsu"] === "g" ? "checked" : null ?>>
+          <span class="text-black">Cachorro</span>
+          <input type="radio" value="c" name="input-imagem-cachorro" id="input-imagem-cachorro" class="ms-1" <?= $usuario["tipoImagemPerfilUsu"] === "c" ? "checked" : null ?>>
+          <span class="text-black ms-3">Gato</span>
+          <input type="radio" value="g" name="input-imagem-gato" id="input-imagem-gato" class="ms-1" <?= $usuario["tipoImagemPerfilUsu"] === "g" ? "checked" : null ?>>
         </div>
       </div>
       <div class="vr d-none d-lg-block col-1"></div>
       <div class="informacoes-usuario col-lg-8 col-12 p-5">
-          <div class="d-flex flex-column">
-            <div class="col-12">
-              <span class="text-black col-6">Nome</span>
-              <input value="<?= $usuario["nomeUsu"] ?>" type="text" id="input-nome" name="input-nome" placeholder="informe seu nome..." class="col-12 form-control">
-            </div>
-            <div class="col-12 mt-4">
-              <span class="text-black col-6">Número de telefone</span>
-              <input value="<?= $usuario["telefoneUsu"] ?>" type="text" id="input-numero" name="input-numero" placeholder="informe seu número..." class="col-12 form-control">
-            </div>
-            <div class="mt-4 col-12">
-              <span class="text-black">Senha nova</span>
-              <input type="password" id="input-senha-nova" name="input-senha-nova" placeholder="informe a senha nova..." class="col-12 form-control">
-            </div>
-            <div class="mt-4 col-12" id="confirmacao-senha-nova">
-              <span class="text-black">Confirmar senha nova</span>
-              <input type="password" id="input-confirmacao-senha-nova" name="input-confirmacao-senha-nova" placeholder="informe a mesma senha nova..." class="col-12 form-control">
-            </div>
-            <div class="mt-4 col-12" id="senha-atual">
-              <span class="text-black">Senha atual</span>
-              <input type="password" id="input-senha-atual" name="input-senha-atual" placeholder="informe sua senha atual..." class="col-12 form-control">
-            </div>
-            <div class="mt-4 col-12">
-              <span class="text-black col-6">Data de nascimento</span>
-              <input value="<?= $usuario["dataNascimentoUsu"] ?>" type="date" id="input-data-nasc" name="input-data-nasc" class="col-12 form-control">
-            </div>
-            <div class="col-12 mt-4">
-              <span class="text-black col-6">CEP</span>
-              <input value="<?= $usuario["cepUsu"] ?>" type="text" id="input-cep" name="input-cep" placeholder="informe seu CEP..." class="col-12 form-control">
-            </div>
-            <div class="col-12 mt-4">
-              <span class="text-black col-6">Complemento de endereço</span>
-              <input value="<?= $usuario["complementoUsu"] ?>" type="text" id="input-complemento" name="input-complemento" placeholder="informe um complemento de endereço..." class="col-12 form-control">
-            </div>
+        <div class="d-flex flex-column">
+          <div class="col-12">
+            <span class="text-black col-6">Nome</span>
+            <input value="<?= $usuario["nomeUsu"] ?>" type="text" id="input-nome" name="input-nome" placeholder="informe seu nome..." class="col-12 form-control">
           </div>
-          <?php if ($mensagensDeInvalidade): ?>
-            <div class="mt-3 text-danger p-2">
-              <?= $mensagensDeInvalidade ?>
-            </div>
-          <?php endif; ?>
-          <div class="mt-5 col-12 d-flex justify-content-center">
-            <button class="botao-alterar col-6 btn text-white" id="botao-alterar" type="submit">Alterar informações</button>
+          <div class="col-12 mt-4">
+            <span class="text-black col-6">Número de telefone</span>
+            <input value="<?= $usuario["telefoneUsu"] ?>" type="text" id="input-numero" name="input-numero" placeholder="informe seu número..." class="col-12 form-control">
           </div>
+          <div class="mt-4 col-12">
+            <span class="text-black">Senha nova</span>
+            <input type="password" id="input-senha-nova" name="input-senha-nova" placeholder="informe a senha nova..." class="col-12 form-control">
+          </div>
+          <div class="mt-4 col-12" id="confirmacao-senha-nova">
+            <span class="text-black">Confirmar senha nova</span>
+            <input type="password" id="input-confirmacao-senha-nova" name="input-confirmacao-senha-nova" placeholder="informe a mesma senha nova..." class="col-12 form-control">
+          </div>
+          <div class="mt-4 col-12" id="senha-atual">
+            <span class="text-black">Senha atual</span>
+            <input type="password" id="input-senha-atual" name="input-senha-atual" placeholder="informe sua senha atual..." class="col-12 form-control">
+          </div>
+          <div class="mt-4 col-12">
+            <span class="text-black col-6">Data de nascimento</span>
+            <input value="<?= $usuario["dataNascimentoUsu"] ?>" type="date" id="input-data-nasc" name="input-data-nasc" class="col-12 form-control">
+          </div>
+          <div class="col-12 mt-4">
+            <span class="text-black col-6">CEP</span>
+            <input value="<?= $usuario["cepUsu"] ?>" type="text" id="input-cep" name="input-cep" placeholder="informe seu CEP..." class="col-12 form-control">
+          </div>
+          <div class="col-12 mt-4">
+            <span class="text-black col-6">Complemento de endereço</span>
+            <input value="<?= $usuario["complementoUsu"] ?>" type="text" id="input-complemento" name="input-complemento" placeholder="informe um complemento de endereço..." class="col-12 form-control">
+          </div>
+        </div>
+        <?php if ($mensagensDeInvalidade): ?>
+          <div class="mt-3 text-danger p-2">
+            <?= $mensagensDeInvalidade ?>
+          </div>
+        <?php endif; ?>
+        <div class="mt-5 col-12 d-flex flex-column align-items-center justify-content-center">
+          <button class="botao-alterar col-6 btn text-white" id="botao-alterar" type="submit">Alterar informações</button>
+          <a href="/adotai/view/acoes/deslogar.php" class="bg-danger col-3 mt-4 text-white btn">
+            Sair
+          </a>
+        </div>
       </div>
     </form>
   </body>
@@ -126,7 +129,7 @@ else:
     const inputImagemCachorro = document.getElementById("input-imagem-cachorro");
     const inputImagemGato = document.getElementById("input-imagem-gato");
 
-    if(inputImagemCachorro.checked){
+    if (inputImagemCachorro.checked) {
       imagemPefil.src = "/adotai/util/user-cachorro.png";
     } else {
       imagemPefil.src = "/adotai/util/user-gato.png";
