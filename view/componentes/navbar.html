@@ -10,7 +10,7 @@
   <div class="d-flex justify-content-end col-md-4 col-6">
     <a href="/adotai/view/perfil.php" class="d-flex justify-content-end col-2">
       <img
-        src="/adotai/util/user-gato.png"
+        src="/adotai/util/<?= $usuario['tipoImagemPerfilUsu'] === 'g' ? 'user-gato.png' : 'user-cachorro.png' ?>"
         alt="Foto de perfil do usuário"
         class="col-lg-7 col-12 bg-white rounded-5"
       />
