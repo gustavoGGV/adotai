@@ -51,3 +51,9 @@ INSERT INTO Temperamento VALUES
 (2, "Extrovertido", "a"),
 (3, "Arisco", "m"),
 (4, "Calmo", "b");
+
+INSERT INTO Pet VALUES
+("placeholder1", "Rexstone", "m", "Carinhoso, brincalhão com as crianças. Vacinado e sadio.", false, 2, 2, "https://s2-g1.glbimg.com/TdPTg4jg3ZqtmZtyFnuHehXLgmk=/0x314:720x1073/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2019/B/x/gU7r6UTvyFwLn5G5FlUg/whatsapp-image-2019-02-22-at-14.53.02.jpeg"),
+("placeholder2", "Pedro", "m", "Extrovertido quando quer, contido. Não-vacinado e sadio.", false, 6, 4, "https://i.redd.it/6awu42gnlasc1.jpeg"),
+("placeholder3", "Florinda", "f", "Bem arisca, foi vítima de maus-tratos. Vacinada, mas é bem raivosa e fraca.", true, 5, 3, "https://preview.redd.it/z1seq6b71d851.jpg?width=1080&crop=smart&auto=webp&s=a52fe92b54bb99e8d3ec15d0562c1437e7eb437c"),
+("placeholder4", "Joaninha", "f", "uito carentinha, dócil, excelente companheira. Sadia e vacinada, é filhote de Pit Bull.", true, 1, 2, "https://www.chefbob.com.br/cdn/shop/articles/2020-05-08-como-cuidar-de-uma-cadelinha-no-cio_jpg.webp?v=1756847533");
