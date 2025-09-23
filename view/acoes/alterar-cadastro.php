@@ -32,13 +32,13 @@ if (isset($_POST["input-numero"])) {
   $usuarioController = new UsuarioController();
 
   if ($alteracaoDeSenha) {
-    $alteracoesUsuario = new Usuario($usuario["idUsu"], $nomeUsu, $telefoneUsu, $dataNascimentoUsu, $cepUsu, $complementoUsu, $senhaNovaUsu, $tamanhoSenhaNovaUsu, $confirmacaoSenhaNovaUsu, null, $tipoImagemPerfilUsu);
-    $invalidades = $usuarioController->alterarInformacoesUsuario($alteracoesUsuario, true, $inputSenhaAtualUsu, $usuario["senhaUsu"]);    
+    $alteracoesUsuario = new Usuario($usuario->getIdUsu(), $nomeUsu, $telefoneUsu, $dataNascimentoUsu, $cepUsu, $complementoUsu, $senhaNovaUsu, $tamanhoSenhaNovaUsu, $confirmacaoSenhaNovaUsu, null, $tipoImagemPerfilUsu);
+    $invalidades = $usuarioController->alterarInformacoesUsuario($alteracoesUsuario, true, $inputSenhaAtualUsu, $usuario["senhaUsu"]);
   } else {
     // Preenche somente os atributos que são necessários.
-    $alteracoesUsuario = new Usuario($usuario["idUsu"], $nomeUsu, $telefoneUsu, $dataNascimentoUsu, $cepUsu, $complementoUsu, null, null, null, null, $tipoImagemPerfilUsu);
+    $alteracoesUsuario = new Usuario($usuario->getIdUsu(), $nomeUsu, $telefoneUsu, $dataNascimentoUsu, $cepUsu, $complementoUsu, null, null, null, null, $tipoImagemPerfilUsu);
     // Passa strings vazinhas para as senhas, já que não serão consideradas para a validação.
-    $invalidades = $usuarioController->alterarInformacoesUsuario($alteracoesUsuario, false, "", "");    
+    $invalidades = $usuarioController->alterarInformacoesUsuario($alteracoesUsuario, false, "", "");
   }
 
   if ($invalidades) {

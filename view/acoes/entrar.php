@@ -6,6 +6,8 @@ $numero = null;
 $erro = null;
 
 if (isset($_POST["input-numero"])) {
+  $numero = $_POST["input-numero"];
+
   $usuarioController = new UsuarioController();
   $usuario = $usuarioController->encontrarUsuarioComTelefoneSenha($_POST["input-numero"], $_POST["input-senha"]);
 
@@ -17,7 +19,7 @@ if (isset($_POST["input-numero"])) {
     }
   } else if ($usuario) {
     // Cookie com o ID do usuário que entrou na sessão. Expira em 120 dias.
-    setcookie("idUsu", $usuario["idUsu"], time() + 60 * 60 * 24 * 120, "/", "", false, true);
+    setcookie("idUsu", $usuario->getIdUsu(), time() + 60 * 60 * 24 * 120, "/", "", false, true);
 
     header("location: /adotai/view/pagina-principal.php");
   } else {

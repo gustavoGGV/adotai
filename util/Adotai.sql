@@ -21,6 +21,7 @@ CREATE TABLE Pet (
     temRacaPet BOOLEAN NOT NULL,
     idEsp INT,
     idTem INT,
+    linkImagemPet TEXT NOT NULL,
     FOREIGN KEY(idEsp) REFERENCES Especie(idEsp),
     FOREIGN KEY(idTem) REFERENCES Temperamento(idTem)
 );

@@ -21,9 +21,9 @@ else:
         </div>
         <div class="selecionar-imagem-perfil d-flex justify-content-center mt-4">
           <span class="text-black">Cachorro</span>
-          <input type="radio" value="c" name="input-imagem-cachorro" id="input-imagem-cachorro" class="ms-1" <?= $usuario["tipoImagemPerfilUsu"] === "c" ? "checked" : null ?>>
+          <input type="radio" value="c" name="input-imagem-cachorro" id="input-imagem-cachorro" class="ms-1" <?= $usuario->getTipoImagemPerfilUsu() === "c" ? "checked" : null ?>>
           <span class="text-black ms-3">Gato</span>
-          <input type="radio" value="g" name="input-imagem-gato" id="input-imagem-gato" class="ms-1" <?= $usuario["tipoImagemPerfilUsu"] === "g" ? "checked" : null ?>>
+          <input type="radio" value="g" name="input-imagem-gato" id="input-imagem-gato" class="ms-1" <?= $usuario->getTipoImagemPerfilUsu() === "g" ? "checked" : null ?>>
         </div>
       </div>
       <div class="vr d-none d-lg-block col-1"></div>
@@ -31,11 +31,11 @@ else:
         <div class="d-flex flex-column">
           <div class="col-12">
             <span class="text-black col-6">Nome</span>
-            <input value="<?= $usuario["nomeUsu"] ?>" type="text" id="input-nome" name="input-nome" placeholder="informe seu nome..." class="col-12 form-control">
+            <input value="<?= $usuario->getNomeUsu() ?>" type="text" id="input-nome" name="input-nome" placeholder="informe seu nome..." class="col-12 form-control">
           </div>
           <div class="col-12 mt-4">
             <span class="text-black col-6">Número de telefone</span>
-            <input value="<?= $usuario["telefoneUsu"] ?>" type="text" id="input-numero" name="input-numero" placeholder="informe seu número..." class="col-12 form-control">
+            <input value="<?= $usuario->getTelefoneUsu() ?>" type="text" id="input-numero" name="input-numero" placeholder="informe seu número..." class="col-12 form-control">
           </div>
           <div class="mt-4 col-12">
             <span class="text-black">Senha nova</span>
@@ -51,15 +51,15 @@ else:
           </div>
           <div class="mt-4 col-12">
             <span class="text-black col-6">Data de nascimento</span>
-            <input value="<?= $usuario["dataNascimentoUsu"] ?>" type="date" id="input-data-nasc" name="input-data-nasc" class="col-12 form-control">
+            <input value="<?= $usuario->getDataNascimentoUsu() ?>" type="date" id="input-data-nasc" name="input-data-nasc" class="col-12 form-control">
           </div>
           <div class="col-12 mt-4">
             <span class="text-black col-6">CEP</span>
-            <input value="<?= $usuario["cepUsu"] ?>" type="text" id="input-cep" name="input-cep" placeholder="informe seu CEP..." class="col-12 form-control">
+            <input value="<?= $usuario->getCepUsu() ?>" type="text" id="input-cep" name="input-cep" placeholder="informe seu CEP..." class="col-12 form-control">
           </div>
           <div class="col-12 mt-4">
             <span class="text-black col-6">Complemento de endereço</span>
-            <input value="<?= $usuario["complementoUsu"] ?>" type="text" id="input-complemento" name="input-complemento" placeholder="informe um complemento de endereço..." class="col-12 form-control">
+            <input value="<?= $usuario->getComplementoUsu() ?>" type="text" id="input-complemento" name="input-complemento" placeholder="informe um complemento de endereço..." class="col-12 form-control">
           </div>
         </div>
         <?php if ($mensagensDeInvalidade): ?>

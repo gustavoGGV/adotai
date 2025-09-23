@@ -32,7 +32,8 @@ class UsuarioDAO
     }
   }
 
-  public function alterarInformacoesUsuario(Usuario $usuario, bool $alteracaoDeSenha) {
+  public function alterarInformacoesUsuario(Usuario $usuario, bool $alteracaoDeSenha)
+  {
     try {
       $sql = "UPDATE Usuario SET nomeUsu = ?, telefoneUsu = ?, dataNascimentoUsu = ?, cepUsu = ?, complementoUsu = ?, tipoImagemPerfilUsu = ?" . ($alteracaoDeSenha ? ", senhaUsu = ?" : "") . " WHERE idUsu = ?";
       $stm = $this->conexao->prepare($sql);
@@ -59,7 +60,9 @@ class UsuarioDAO
       if ($usuario) {
         $saoSenhasIguais = password_verify($senha, $usuario[0]["senhaUsu"]);
         if ($saoSenhasIguais) {
-          return $usuario[0];
+          $usuarioMapeado = $this->mapearUsuarios($usuario);
+
+          return $usuarioMapeado[0];
         }
       }
 
@@ -78,7 +81,9 @@ class UsuarioDAO
       $usuario = $stm->fetchAll();
 
       if (count($usuario) === 1) {
-        return $usuario[0];
+        $usuarioMapeado = $this->mapearUsuarios($usuario);
+
+        return $usuarioMapeado[0];
       }
 
       return false;
@@ -99,5 +104,18 @@ class UsuarioDAO
     }
 
     return false;
+  }
+
+  private function mapearUsuarios(array $usuarios)
+  {
+    $usuariosMapeados = array();
+
+    foreach ($usuarios as $usuario) {
+      $usuarioMapeado = new Usuario($usuario["idUsu"], $usuario["nomeUsu"], $usuario["telefoneUsu"], $usuario["dataNascimentoUsu"], $usuario["cepUsu"], $usuario["complementoUsu"], $usuario["senhaUsu"], null, null, $usuario["tipoUsu"], $usuario["tipoImagemPerfilUsu"]);
+
+      array_push($usuariosMapeados, $usuarioMapeado);
+    }
+
+    return $usuariosMapeados;
   }
 }

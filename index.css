@@ -29,14 +29,16 @@ body {
 footer,
 .entrar,
 .cadastrar,
-.navbar {
+.navbar,
+.corpo-card-pet {
   background-color: #d96b3d;
 }
 
 .entrar .cabeca-entrar,
 .cadastrar .cabeca-cadastrar,
 .botao-alterar,
-.botao-alterar:hover {
+.botao-alterar:hover,
+.cabeca-card-pet {
   background-color: #382110;
 }
 
@@ -44,4 +46,10 @@ footer,
 #confirmacao-senha-nova,
 #senha-atual {
   display: none;
+}
+
+.imagem-pet {
+  height: 300px;
+  object-fit: cover;
+  object-position: center;
 }
