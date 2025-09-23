@@ -17,7 +17,7 @@ class PetDAO
   public function dadosDeTodosOsPets()
   {
     try {
-      $sql = "SELECT p.*, e.nomeEsp, e.porteEsp, t.tipoTem, t.energiaTem FROM Pet p JOIN Especie e ON (e.idEsp = p.idEsp) JOIN Temperamento t ON (t.idTem = p.idTem)";
+      $sql = "SELECT p.*, e.nomeEsp, e.porteEsp, t.tipoTem, t.energiaTem, u.nomeUsu FROM Pet p JOIN Especie e ON (e.idEsp = p.idEsp) JOIN Temperamento t ON (t.idTem = p.idTem) JOIN Usuario u ON (u.idUsu = p.idUsu)";
       $stm = $this->conexao->prepare($sql);
       $stm->execute();
       $pets = $stm->fetchAll();
@@ -38,7 +38,10 @@ class PetDAO
       $especie = new Especie($pet["idEsp"], $pet["nomeEsp"], $pet["porteEsp"]);
       $temperamento = new Temperamento($pet["idTem"], $pet["tipoTem"], $pet["energiaTem"]);
 
-      $petMapeado = new Pet($pet["idPet"], $pet["nomePet"], $pet["sexoPet"], $pet["descricaoPet"], $pet["temRacaPet"], $pet["linkImagemPet"], $especie, $temperamento);
+      // Somente o nome e id são necessários para a página principal.
+      $acolhedor = new Usuario($pet["idUsu"], $pet["nomeUsu"], null, null, null, null, null, null, null, null, null);
+
+      $petMapeado = new Pet($pet["idPet"], $pet["nomePet"], $pet["sexoPet"], $pet["descricaoPet"], $pet["temRacaPet"], $especie, $temperamento, $pet["linkImagemPet"], $acolhedor);
 
       array_push($petsMapeados, $petMapeado);
     }
