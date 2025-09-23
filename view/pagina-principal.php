@@ -28,20 +28,28 @@ else:
                 <h2 class="fw-bold mb-3"><?= $pet->getNomePet() ?></h2>
               </div>
               <div class="d-flex">
-                <p class="fw-bold me-1">Sexo:</p><?= $pet->getSexoPet() === "m" ? "masculino" : "feminino" ?>
+                <p class="fw-bold me-1">Sexo:</p>
+                <p class="text-break"><?= $pet->getSexoPet() === "m" ? "masculino" : "feminino" ?></p>
               </div>
               <div class="d-flex">
-                <p class="fw-bold me-1">Tem raça:</p><?= $pet->getTemRacaPet() ? "sim" : "não" ?>
+                <p class="fw-bold me-1">Tem raça:</p>
+                <p class="text-break"><?= $pet->getTemRacaPet() ? "sim" : "não" ?></p>
               </div>
               <div class="d-flex">
-                <p class="fw-bold me-1">Espécie:</p><?= $pet->getEspecie()->listarEspecie() ?>
+                <p class="fw-bold me-1">Espécie:</p>
+                <p class="text-break"><?= $pet->getEspecie()->listarEspecie() ?></p>
               </div>
               <div class="d-flex">
-                <p class="fw-bold me-1">Temperamento:</p><?= $pet->getTemperamento()->listarTemperamento() ?>
+                <p class="fw-bold me-1">Temperamento:</p>
+                <p class="text-break"><?= $pet->getTemperamento()->listarTemperamento() ?></p>
               </div>
               <div class="d-flex">
                 <p class="fw-bold me-1">Descrição:</p>
                 <p class="text-break"><?= $pet->getDescricaoPet() ?></p>
+              </div>
+              <div class="d-flex">
+                <p class="fw-bold me-1">Acolhedor:</p>
+                <a href="/adotai/view/pagina-usuario.php/?idUsu=<?= $pet->getAcolhedor()->getIdUsu() ?>" class="text-white text-break"><?= $pet->getAcolhedor()->getNomeUsu() ?></a>
               </div>
             </div>
           </div>

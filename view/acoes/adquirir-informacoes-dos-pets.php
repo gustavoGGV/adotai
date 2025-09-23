@@ -6,7 +6,8 @@ $petController = new PetController();
 $pets = $petController->dadosDeTodosOsPets();
 
 if ($pets instanceof PDOException) {
-  echo $pets;
-
-  return;
+  echo "Erro de busca no banco de dados. Contate-nos: ajuda@adotai.com";
+  if (AMBIENTE_DEV) {
+    echo $pets;
+  }
 }

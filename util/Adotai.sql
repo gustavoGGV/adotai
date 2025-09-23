@@ -13,19 +13,6 @@ CREATE TABLE Especie (
     porteEsp ENUM("p", "m", "g")
 );
 
-CREATE TABLE Pet (
-	idPet VARCHAR(36) PRIMARY KEY,
-    nomePet VARCHAR(80) NOT NULL,
-    sexoPet ENUM("f", "m") NOT NULL,
-    descricaoPet TEXT NOT NULL,
-    temRacaPet BOOLEAN NOT NULL,
-    idEsp INT,
-    idTem INT,
-    linkImagemPet TEXT NOT NULL,
-    FOREIGN KEY(idEsp) REFERENCES Especie(idEsp),
-    FOREIGN KEY(idTem) REFERENCES Temperamento(idTem)
-);
-
 CREATE TABLE Usuario (
 	idUsu VARCHAR(36) PRIMARY KEY,
     nomeUsu VARCHAR(80) NOT NULL,
@@ -36,6 +23,21 @@ CREATE TABLE Usuario (
     telefoneUsu VARCHAR(15) NOT NULL,
     tipoUsu ENUM("c", "a") NOT NULL,
     tipoImagemPerfilUsu ENUM("c", "g") NOT NULL
+);
+
+CREATE TABLE Pet (
+	idPet VARCHAR(36) PRIMARY KEY,
+    nomePet VARCHAR(80) NOT NULL,
+    sexoPet ENUM("f", "m") NOT NULL,
+    descricaoPet TEXT NOT NULL,
+    temRacaPet BOOLEAN NOT NULL,
+    idEsp INT NOT NULL,
+    idTem INT NOT NULL,
+    linkImagemPet TEXT NOT NULL,
+    idUsu TEXT NOT NULL,
+    FOREIGN KEY(idEsp) REFERENCES Especie(idEsp),
+    FOREIGN KEY(idTem) REFERENCES Temperamento(idTem),
+    FOREIGN KEY(idUsu) REFERENCES Usuario(idUsu)
 );
 
 INSERT INTO Especie VALUES
