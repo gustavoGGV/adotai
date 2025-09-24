@@ -36,7 +36,7 @@ if (!$usuario) {
             </div>
             <div class="corpo-card-pet p-4 card-body text-white">
               <div class="d-flex justify-content-center">
-                <h2 class="fw-bold mb-3"><?= $pet->getNomePet() ?></h2>
+                <h2 class="fw-bold mb-3 text-break"><?= $pet->getNomePet() ?></h2>
               </div>
               <div class="d-flex">
                 <p class="fw-bold me-1">Sexo:</p>
@@ -58,14 +58,17 @@ if (!$usuario) {
                 <p class="fw-bold me-1">Descrição:</p>
                 <p class="text-break"><?= $pet->getDescricaoPet() ?></p>
               </div>
+              <div class="d-flex">
+                <a class="text-white text-decoration-none bg-warning fs-3 ps-1 pe-1 rounded-3" href="/adotai/view/cadastro-pet.php/?idPet=<?= $pet->getIdPet() ?>"><i class="bi bi-pencil-square"></i></a>
+                <a></a>
+              </div>
             </div>
           </div>
         </div>
       <?php
         $numeroDeCards++;
 
-        // Se o número de cards é 3, a linha é quebrada. Também, é checado se o número de pets é não divsível por 3, para assim não criar uma div inútil quando será fileiras exatas. 
-        if ($numeroDeCards === 3 && count($pets) % 3 != 0) {
+        if ($numeroDeCards === 3) {
           echo "</div>\n<div class='container-lg d-flex flex-lg-row flex-column justify-content-between align-items-center'>";
           $numeroDeCards = 0;
         }

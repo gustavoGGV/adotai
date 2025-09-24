@@ -62,6 +62,38 @@ class PetDAO
     }
   }
 
+  public function buscarPetPorId(string $idPet)
+  {
+    try {
+      $sql = "SELECT p.*, e.nomeEsp, e.porteEsp, t.tipoTem, t.energiaTem FROM Pet p JOIN Especie e ON (e.idEsp = p.idEsp) JOIN Temperamento t ON (t.idTem = p.idTem) WHERE idPet = ?";
+      $stm = $this->conexao->prepare($sql);
+      $stm->execute([$idPet]);
+      $pet = $stm->fetchAll();
+
+      $petMapeado = null;
+      if (count($pet) > 0 && count($pet) < 2) {
+        $petMapeado = $this->mapearPets($pet, false);
+      }
+
+      return $petMapeado[0];
+    } catch (PDOException $e) {
+      return $e;
+    }
+  }
+
+  public function alterarInformacoesPet(Pet $pet)
+  {
+    try {
+      $sql = "UPDATE Pet SET nomePet = ?, sexoPet = ?, descricaoPet = ?, temRacaPet = ?, idEsp = ?, idTem = ?, linkImagemPet = ? WHERE idPet = ?";
+      $stm = $this->conexao->prepare($sql);
+      $stm->execute([$pet->getNomePet(), $pet->getSexoPet(), $pet->getDescricaoPet(), $pet->getTemRacaPet() ? 1 : 0, $pet->getEspecie()->getIdEsp(), $pet->getTemperamento()->getIdTem(), $pet->getLinkImagemPet(), $pet->getIdPet()]);
+
+      return null;
+    } catch (PDOException $e) {
+      return $e;
+    }
+  }
+
   private function mapearPets(array $pets, bool $precisaDeAcolhedor = true)
   {
     $petsMapeados = array();

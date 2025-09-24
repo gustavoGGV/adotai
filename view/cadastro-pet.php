@@ -1,6 +1,6 @@
 <?php
 include_once(__DIR__ . "/acoes/adquirir-informacao-do-usuario.php");
-include_once(__DIR__ . "/acoes/cadastrar-pet.php");
+include_once(__DIR__ . "/acoes/cadastrar-alterar-pet.php");
 require_once(__DIR__ . "/../controller/EspecieController.php");
 require_once(__DIR__ . "/../controller/TemperamentoController.php");
 
@@ -11,7 +11,7 @@ $temperamentos = $temperamentoController->pegarTemperamentos();
 
 include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
 ?>
-<title>Adotaí | Cadastrar Pet</title>
+<title>Adotaí | <?= isset($_GET["idPet"]) ? "Alterar" : "Cadastrar" ?> Pet</title>
 </head>
 
 <body>
@@ -39,8 +39,8 @@ include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
       <span>É de raça? *</span>
       <select class="mt-2 form-control" id="select-raca-pet" name="select-raca-pet">
         <option value="">escolha...</option>
-        <option value="0" <?= $cadastro && $cadastro->getTemRacaPet() === "0" ? "selected" : null ?>>não</option>
-        <option value="1" <?= $cadastro && $cadastro->getTemRacaPet() === "1" ? "selected" : null ?>>sim</option>
+        <option value="0" <?= $cadastro && $cadastro->getTemRacaPet() === false ? "selected" : null ?>>não</option>
+        <option value="1" <?= $cadastro && $cadastro->getTemRacaPet() === true ? "selected" : null ?>>sim</option>
       </select>
     </div>
     <div class="mb-3">
@@ -83,7 +83,7 @@ include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
       </div>
     <?php endif; ?>
     <div class="col-12 d-flex justify-content-center">
-      <button type="submit" class="mt-3 botao-cadastrar-pet btn col-4 text-white">Cadastrar</button>
+      <button type="submit" class="mt-3 botao-cadastrar-pet btn col-4 text-white"><?= isset($_GET["idPet"]) ? "Alterar" : "Cadastrar" ?></button>
     </div>
   </form>
 </body>
