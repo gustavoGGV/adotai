@@ -93,4 +93,11 @@ class UsuarioController
 
     return $erro;
   }
+
+  public function dadosDeTodosOsUsuarios()
+  {
+    $usuarios = $this->usuarioDAO->dadosDeTodosOsUsuarios();
+
+    return $usuarios;
+  }
 }

@@ -4,15 +4,6 @@ Primária: #d96b3d
 Secundária: #382110
 */
 
-/* Esconder scroll bar. */
-* {
-  -ms-overflow-style: none; /* Internet Explorer 10+ */
-  scrollbar-width: none; /* Firefox, Safari 18.2+, Chromium 121+ */
-}
-*::-webkit-scrollbar {
-  display: none; /* Older Safari and Chromium */
-}
-
 body {
   height: 100vh;
   overflow-y: auto;
@@ -39,8 +30,10 @@ footer,
 .botao-alterar,
 .botao-alterar:hover,
 .cabeca-card-pet,
-.botao-meus-pets,
-.botao-cadastrar-pet {
+.botao-pagina-principal,
+.botao-pagina-principal:hover,
+.botao-cadastrar-pet,
+.botao-cadastrar-pet:hover {
   background-color: #382110;
 }
 

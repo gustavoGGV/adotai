@@ -40,7 +40,7 @@ if (!isset($_GET["idUsu"])) {
   <div class="container d-flex flex-column">
     <?php
     if ($usuario && $usuario->getTipoUsu() === "a"):
-      if (!$usuario->getBanidoUsu()):
+      if (!$dadosDoPerfilAcessado->getBanidoUsu()):
     ?>
         <a href="/adotai/view/acoes/banir-desbanir.php/?idUsu=<?= $dadosDoPerfilAcessado->getIdUsu() ?>&banir=1">
           <button class="btn bg-danger mb-4 text-white text-decoration-none" onclick="return confirm('Deseja mesmo banir o usuário <?= $dadosDoPerfilAcessado->getNomeUsu() ?>?')">
@@ -51,7 +51,7 @@ if (!isset($_GET["idUsu"])) {
       else:
       ?>
         <a href="/adotai/view/acoes/banir-desbanir.php/?idUsu=<?= $dadosDoPerfilAcessado->getIdUsu() ?>&banir=0">
-          <button class="btn bg-danger mb-4 text-white text-decoration-none" onclick="return confirm('Deseja mesmo banir o usuário <?= $dadosDoPerfilAcessado->getNomeUsu() ?>?')">
+          <button class="btn bg-danger mb-4 text-white text-decoration-none" onclick="return confirm('Deseja mesmo desbanir o usuário <?= $dadosDoPerfilAcessado->getNomeUsu() ?>?')">
             Desbanir <?= $dadosDoPerfilAcessado->getNomeUsu() ?>
           </button>
         </a>
