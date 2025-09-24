@@ -17,4 +17,11 @@ class PetController
 
     return $pets;
   }
+
+  public function buscarPetsPorIdDeUsuário(string $idUsu)
+  {
+    $petsEncontrados = $this->petDAO->buscarPetsPorIdDeUsuário($idUsu);
+
+    return $petsEncontrados;
+  }
 }

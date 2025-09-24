@@ -1,6 +1,7 @@
 <?php
 
 require_once(__DIR__ . "/../../controller/UsuarioController.php");
+require_once(__DIR__ . "/../../model/Usuario.php");
 
 $numero = null;
 $erro = null;
@@ -17,12 +18,14 @@ if (isset($_POST["input-numero"])) {
     if (AMBIENTE_DEV) {
       $erro = $usuario;
     }
-  } else if ($usuario) {
+  } else if (!$usuario) {
+    $erro = "O número de telefone e/ou a senha está incorreta!";
+  } else if ($usuario->getBanidoUsu()) {
+    $erro = "Esta conta está banida do Adotaí";
+  } else {
     // Cookie com o ID do usuário que entrou na sessão. Expira em 120 dias.
     setcookie("idUsu", $usuario->getIdUsu(), time() + 60 * 60 * 24 * 120, "/", "", false, true);
 
     header("location: /adotai/view/pagina-principal.php");
-  } else {
-    $erro = "O número de telefone e/ou a senha está incorreta!";
   }
 }

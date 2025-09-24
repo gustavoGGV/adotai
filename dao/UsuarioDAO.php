@@ -20,9 +20,9 @@ class UsuarioDAO
     }
 
     try {
-      $sql = "INSERT INTO Usuario (idUsu, nomeUsu, dataNascimentoUsu, cepUsu, complementoUsu, senhaUsu, telefoneUsu, tipoUsu, tipoImagemPerfilUsu) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+      $sql = "INSERT INTO Usuario (idUsu, nomeUsu, dataNascimentoUsu, cepUsu, complementoUsu, senhaUsu, telefoneUsu, tipoUsu, tipoImagemPerfilUsu, banidoUsu) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
       $stm = $this->conexao->prepare($sql);
-      $stm->execute([$usuario->getIdUsu(), $usuario->getNomeUsu(), $usuario->getDataNascimentoUsu(), $usuario->getCepUsu(), $usuario->getComplementoUsu(), $usuario->getSenhaUsu(), $usuario->getTelefoneUsu(), $usuario->getTipoUsu(), $usuario->getTipoImagemPerfilUsu()]);
+      $stm->execute([$usuario->getIdUsu(), $usuario->getNomeUsu(), $usuario->getDataNascimentoUsu(), $usuario->getCepUsu(), $usuario->getComplementoUsu(), $usuario->getSenhaUsu(), $usuario->getTelefoneUsu(), $usuario->getTipoUsu(), $usuario->getTipoImagemPerfilUsu(), false]);
 
       // Sem erro.
       return null;
@@ -94,10 +94,14 @@ class UsuarioDAO
 
   public function telefoneJaExiste(string $numero)
   {
-    $sql = "SELECT * FROM Usuario WHERE telefoneUsu = ?";
-    $stm = $this->conexao->prepare($sql);
-    $stm->execute([$numero]);
-    $usuarios = $stm->fetchAll();
+    try {
+      $sql = "SELECT * FROM Usuario WHERE telefoneUsu = ?";
+      $stm = $this->conexao->prepare($sql);
+      $stm->execute([$numero]);
+      $usuarios = $stm->fetchAll();
+    } catch (PDOException $e) {
+      return $e;
+    }
 
     if (count($usuarios) > 0) {
       return true;
@@ -106,12 +110,25 @@ class UsuarioDAO
     return false;
   }
 
+  public function banirOuDesbanirUsuario(string $idUsu, int $banir)
+  {
+    try {
+      $sql = "UPDATE Usuario SET banidoUsu = ? WHERE idUsu = ?";
+      $stm = $this->conexao->prepare($sql);
+      $stm->execute([$banir, $idUsu]);
+
+      return null;
+    } catch (PDOException $e) {
+      return $e;
+    }
+  }
+
   private function mapearUsuarios(array $usuarios)
   {
     $usuariosMapeados = array();
 
     foreach ($usuarios as $usuario) {
-      $usuarioMapeado = new Usuario($usuario["idUsu"], $usuario["nomeUsu"], $usuario["telefoneUsu"], $usuario["dataNascimentoUsu"], $usuario["cepUsu"], $usuario["complementoUsu"], $usuario["senhaUsu"], null, null, $usuario["tipoUsu"], $usuario["tipoImagemPerfilUsu"]);
+      $usuarioMapeado = new Usuario($usuario["idUsu"], $usuario["nomeUsu"], $usuario["telefoneUsu"], $usuario["dataNascimentoUsu"], $usuario["cepUsu"], $usuario["complementoUsu"], $usuario["senhaUsu"], null, null, $usuario["tipoUsu"], $usuario["tipoImagemPerfilUsu"], $usuario["banidoUsu"]);
 
       array_push($usuariosMapeados, $usuarioMapeado);
     }

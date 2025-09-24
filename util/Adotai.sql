@@ -22,7 +22,8 @@ CREATE TABLE Usuario (
     senhaUsu TEXT NOT NULL,
     telefoneUsu VARCHAR(15) NOT NULL,
     tipoUsu ENUM("c", "a") NOT NULL,
-    tipoImagemPerfilUsu ENUM("c", "g") NOT NULL
+    tipoImagemPerfilUsu ENUM("c", "g") NOT NULL,
+    banidoUsu BOOLEAN NOT NULL
 );
 
 CREATE TABLE Pet (

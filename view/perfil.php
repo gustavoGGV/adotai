@@ -3,9 +3,11 @@ include_once(__DIR__ . "/acoes/adquirir-informacao-do-usuario.php");
 include_once(__DIR__ . "/acoes/alterar-cadastro.php");
 include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
 
-if (!$usuario):
+if (!$usuario) :
   header("location: /adotai/view/login.php");
-else:
+elseif ($usuario->getBanidoUsu()) :
+  header("location: /adotai/view/acoes/deslogar.php");
+else :
 ?>
   <title>Adotaí | Perfil</title>
   </head>
@@ -14,7 +16,7 @@ else:
     <?php
     include_once(__DIR__ . "/componentes/navbar.html");
     ?>
-    <form action="" method="post" class="container d-flex flex-lg-row flex-column position-relative">
+    <form action="" method="post" class="container d-flex flex-lg-row flex-column">
       <div class="imagem-perfil-usuario col-lg-3 col-12">
         <div class="imagem-usuario-container d-flex justify-content-center">
           <img src="/adotai/util/user-cachorro.png" id="imagem-perfil" class="w-lg-75 ms-lg-2">

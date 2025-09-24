@@ -13,8 +13,9 @@ class Usuario
   private ?bool $confimacaoSenhaUsu;
   private ?string $tipoUsu;
   private ?string $tipoImagemPerfilUsu;
+  private ?bool $banidoUsu;
 
-  public function __construct($idUsu, $nomeUsu, $telefoneUsu, $dataNascimentoUsu, $cepUsu, $complementoUsu, $senhaUsu, $tamanhoSenhaUsu, $confimacaoSenhaUsu, $tipoUsu, $tipoImagemPerfilUsu)
+  public function __construct($idUsu, $nomeUsu, $telefoneUsu, $dataNascimentoUsu, $cepUsu, $complementoUsu, $senhaUsu, $tamanhoSenhaUsu, $confimacaoSenhaUsu, $tipoUsu, $tipoImagemPerfilUsu, $banidoUsu)
   {
     $this->idUsu = $idUsu;
     $this->nomeUsu = $nomeUsu;
@@ -27,6 +28,7 @@ class Usuario
     $this->confimacaoSenhaUsu = $confimacaoSenhaUsu;
     $this->tipoUsu = $tipoUsu;
     $this->tipoImagemPerfilUsu = $tipoImagemPerfilUsu;
+    $this->banidoUsu = $banidoUsu;
   }
 
   public function getIdUsu(): ?string
@@ -82,5 +84,10 @@ class Usuario
   public function getTipoImagemPerfilUsu(): ?string
   {
     return $this->tipoImagemPerfilUsu;
+  }
+
+  public function getBanidoUsu(): ?bool
+  {
+    return $this->banidoUsu;
   }
 }
