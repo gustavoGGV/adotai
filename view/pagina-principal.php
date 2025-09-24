@@ -35,7 +35,7 @@ if (!$usuario) {
           </div>
           <div class="corpo-card-pet p-4 card-body text-white">
             <div class="d-flex justify-content-center">
-              <h2 class="fw-bold mb-3"><?= $pet->getNomePet() ?></h2>
+              <h2 class="fw-bold mb-3 text-break"><?= $pet->getNomePet() ?></h2>
             </div>
             <div class="d-flex">
               <p class="fw-bold me-1">Sexo:</p>

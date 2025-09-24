@@ -45,4 +45,29 @@ class PetController
 
     return $invalidades;
   }
+
+  public function alterarInformacoesPet(Pet $pet)
+  {
+    $invalidades = $this->petService->validarPet($pet);
+    if ($invalidades) {
+      return $invalidades;
+    }
+
+    $erro = $this->petDAO->alterarInformacoesPet($pet);
+    if ($erro) {
+      array_push($invalidades, "Erro ao alterar as informações do pet no banco de dados");
+      if (AMBIENTE_DEV) {
+        array_push($invalidades, $erro);
+      }
+    }
+
+    return $invalidades;
+  }
+
+  public function buscarPetPorId(string $idPet)
+  {
+    $pet = $this->petDAO->buscarPetPorId($idPet);
+
+    return $pet;
+  }
 }
