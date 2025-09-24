@@ -7,6 +7,10 @@ $alteracoesUsuario = null;
 $alteracaoDeSenha = false;
 $mensagensDeInvalidade = null;
 
+if (!$usuario) {
+  header("location: /adotai/view/pagina-principal.php");
+}
+
 if (isset($_POST["input-numero"])) {
   $nomeUsu = trim($_POST["input-nome"]) ? trim($_POST["input-nome"]) : null;
   $dataNascimentoUsu = trim($_POST["input-data-nasc"]) ? trim($_POST["input-data-nasc"]) : null;
@@ -32,11 +36,12 @@ if (isset($_POST["input-numero"])) {
   $usuarioController = new UsuarioController();
 
   if ($alteracaoDeSenha) {
-    $alteracoesUsuario = new Usuario($usuario->getIdUsu(), $nomeUsu, $telefoneUsu, $dataNascimentoUsu, $cepUsu, $complementoUsu, $senhaNovaUsu, $tamanhoSenhaNovaUsu, $confirmacaoSenhaNovaUsu, null, $tipoImagemPerfilUsu);
+    // Falso erro do Intelephense: ele acredita que $usuario só pode ser null, mas não é o caso da aplicação.
+    $alteracoesUsuario = new Usuario($usuario->getIdUsu(), $nomeUsu, $telefoneUsu, $dataNascimentoUsu, $cepUsu, $complementoUsu, $senhaNovaUsu, $tamanhoSenhaNovaUsu, $confirmacaoSenhaNovaUsu, null, $tipoImagemPerfilUsu, false);
     $invalidades = $usuarioController->alterarInformacoesUsuario($alteracoesUsuario, true, $inputSenhaAtualUsu, $usuario["senhaUsu"]);
   } else {
     // Preenche somente os atributos que são necessários.
-    $alteracoesUsuario = new Usuario($usuario->getIdUsu(), $nomeUsu, $telefoneUsu, $dataNascimentoUsu, $cepUsu, $complementoUsu, null, null, null, null, $tipoImagemPerfilUsu);
+    $alteracoesUsuario = new Usuario($usuario->getIdUsu(), $nomeUsu, $telefoneUsu, $dataNascimentoUsu, $cepUsu, $complementoUsu, null, null, null, null, $tipoImagemPerfilUsu, false);
     // Passa strings vazinhas para as senhas, já que não serão consideradas para a validação.
     $invalidades = $usuarioController->alterarInformacoesUsuario($alteracoesUsuario, false, "", "");
   }
