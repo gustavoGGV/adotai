@@ -70,4 +70,11 @@ class PetController
 
     return $pet;
   }
+
+  public function deletarPetPorId(string $idPet)
+  {
+    $erro = $this->petDAO->deletarPetPorId($idPet);
+
+    return $erro;
+  }
 }
