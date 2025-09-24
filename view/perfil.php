@@ -70,9 +70,12 @@ else :
           </div>
         <?php endif; ?>
         <div class="mt-5 col-12 d-flex flex-column align-items-center justify-content-center">
-          <button class="botao-alterar col-6 btn text-white" id="botao-alterar" type="submit">Alterar informações</button>
-          <a href="/adotai/view/acoes/deslogar.php" class="bg-danger col-3 mt-4 text-white btn">
+          <button class="botao-alterar col-4 btn text-white" id="botao-alterar" type="submit">Alterar informações</button>
+          <a href="/adotai/view/acoes/deslogar.php" class="bg-danger col-4 mt-4 text-white btn">
             Sair
+          </a>
+          <a href="/adotai/view/acoes/excluir-conta.php/?idUsu=<?= $usuario->getIdUsu() ?>" class="bg-danger col-4 mt-4 text-white btn" onclick="return confirm('Deseja mesmo deletar sua conta?')">
+            Excluir conta
           </a>
         </div>
       </div>

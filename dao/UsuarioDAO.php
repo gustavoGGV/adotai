@@ -20,9 +20,9 @@ class UsuarioDAO
     }
 
     try {
-      $sql = "INSERT INTO Usuario (idUsu, nomeUsu, dataNascimentoUsu, cepUsu, complementoUsu, senhaUsu, telefoneUsu, tipoUsu, tipoImagemPerfilUsu, banidoUsu) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+      $sql = "INSERT INTO Usuario (idUsu, nomeUsu, dataNascimentoUsu, cepUsu, complementoUsu, senhaUsu, telefoneUsu, tipoUsu, tipoImagemPerfilUsu, banidoUsu) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
       $stm = $this->conexao->prepare($sql);
-      $stm->execute([$usuario->getIdUsu(), $usuario->getNomeUsu(), $usuario->getDataNascimentoUsu(), $usuario->getCepUsu(), $usuario->getComplementoUsu(), $usuario->getSenhaUsu(), $usuario->getTelefoneUsu(), $usuario->getTipoUsu(), $usuario->getTipoImagemPerfilUsu(), false]);
+      $stm->execute([$usuario->getIdUsu(), $usuario->getNomeUsu(), $usuario->getDataNascimentoUsu(), $usuario->getCepUsu(), $usuario->getComplementoUsu(), $usuario->getSenhaUsu(), $usuario->getTelefoneUsu(), $usuario->getTipoUsu(), $usuario->getTipoImagemPerfilUsu(), 0]);
 
       // Sem erro.
       return null;
@@ -116,6 +116,19 @@ class UsuarioDAO
       $sql = "UPDATE Usuario SET banidoUsu = ? WHERE idUsu = ?";
       $stm = $this->conexao->prepare($sql);
       $stm->execute([$banir, $idUsu]);
+
+      return null;
+    } catch (PDOException $e) {
+      return $e;
+    }
+  }
+
+  public function deletarUsuarioPorId(string $idUsu)
+  {
+    try {
+      $sql = "DELETE FROM Usuario WHERE idUsu = ?";
+      $stm = $this->conexao->prepare($sql);
+      $stm->execute([$idUsu]);
 
       return null;
     } catch (PDOException $e) {

@@ -27,11 +27,11 @@ if ($usuario) {
                 <div class="form-cadastrar-esquerda col-6 float-start p-2">
                   <div class="col-12">
                     <span class="text-white col-6">Nome *</span>
-                    <input value="<?= $usuario ? $usuario->getNomeUsu() : null ?>" type="text" id="input-nome" name="input-nome" placeholder="informe seu nome..." class="col-12 form-control">
+                    <input value="<?= $cadastro ? $cadastro->getNomeUsu() : null ?>" type="text" id="input-nome" name="input-nome" placeholder="informe seu nome..." class="col-12 form-control">
                   </div>
                   <div class="col-12 mt-4">
                     <span class="text-white col-6">Número de telefone *</span>
-                    <input value="<?= $usuario ? $usuario->getTelefoneUsu() : null ?>" type="text" id="input-numero" name="input-numero" placeholder="informe seu número..." class="col-12 form-control">
+                    <input value="<?= $cadastro ? $cadastro->getTelefoneUsu() : null ?>" type="text" id="input-numero" name="input-numero" placeholder="informe seu número..." class="col-12 form-control">
                   </div>
                   <div class="mt-4 col-12">
                     <span class="text-white">Senha *</span>
@@ -45,15 +45,15 @@ if ($usuario) {
                 <div class="form-cadastrar-direita col-6 float-end p-2">
                   <div class="col-12">
                     <span class="text-white col-6">Data de nascimento *</span>
-                    <input value="<?= $usuario ? $usuario->getDataNascimentoUsu() : null ?>" type="date" id="input-data-nasc" name="input-data-nasc" class="col-12 form-control">
+                    <input value="<?= $cadastro ? $cadastro->getDataNascimentoUsu() : null ?>" type="date" id="input-data-nasc" name="input-data-nasc" class="col-12 form-control">
                   </div>
                   <div class="col-12 mt-4">
                     <span class="text-white col-6">CEP *</span>
-                    <input value="<?= $usuario ? $usuario->getCepUsu() : null ?>" type="text" id="input-cep" name="input-cep" placeholder="informe seu CEP..." class="col-12 form-control">
+                    <input value="<?= $cadastro ? $cadastro->getCepUsu() : null ?>" type="text" id="input-cep" name="input-cep" placeholder="informe seu CEP..." class="col-12 form-control">
                   </div>
                   <div class="col-12 mt-4">
                     <span class="text-white col-6">Complemento de endereço</span>
-                    <input value="<?= $usuario ? $usuario->getComplementoUsu() : null ?>" type="text" id="input-complemento" name="input-complemento" placeholder="informe um complemento de endereço..." class="col-12 form-control">
+                    <input value="<?= $cadastro ? $cadastro->getComplementoUsu() : null ?>" type="text" id="input-complemento" name="input-complemento" placeholder="informe um complemento de endereço..." class="col-12 form-control">
                   </div>
                 </div>
               </div>

@@ -19,7 +19,7 @@ function guidv4()
   return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
 }
 
-$usuario = null;
+$cadastro = null;
 $mensagensDeInvalidade = null;
 
 if (isset($_POST["input-numero"])) {
@@ -35,10 +35,10 @@ if (isset($_POST["input-numero"])) {
 
   $telefoneUsu = trim($_POST["input-numero"]) ? trim($_POST["input-numero"]) : null;
 
-  $usuario = new Usuario(guidv4(), $nomeUsu, $telefoneUsu, $dataNascimentoUsu, $cepUsu, $complementoUsu, $senhaUsu, $tamanhoSenhaUsu, $confirmacaoSenhaUsu, "c", "c", false);
+  $cadastro = new Usuario(guidv4(), $nomeUsu, $telefoneUsu, $dataNascimentoUsu, $cepUsu, $complementoUsu, $senhaUsu, $tamanhoSenhaUsu, $confirmacaoSenhaUsu, "c", "c", false);
 
   $usuarioController = new UsuarioController();
-  $invalidades = $usuarioController->inserirUsuario($usuario);
+  $invalidades = $usuarioController->inserirUsuario($cadastro);
 
   if ($invalidades) {
     // Junta todas as mensagens de invalidade dentro de uma string separadas por <br>.
