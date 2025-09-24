@@ -19,7 +19,7 @@ if (!$usuario) {
     <h4><a href="/adotai/view/pagina-principal.php" class="text-black text-decoration-none"><i class="bi bi-caret-left-fill"></i>Voltar</a></h4>
   </div>
 
-  <div class="container-lg d-flex flex-lg-row flex-column justify-content-between align-items-center">
+  <div class="container-lg d-flex flex-lg-row flex-column align-items-center">
     <?php
     if (!$pets):
       echo "<h1 class='fw-bold text-white'>Nenhum pet encontrado!</h1>";
@@ -31,8 +31,14 @@ if (!$usuario) {
       ?>
         <div class="p-3 col-lg-4 col-11">
           <div class="card-pet card">
-            <div class="cabeca-card-pet card-header p-4 d-flex justify-content-center">
-              <img src="<?= $pet->getLinkImagemPet() ?>" class="imagem-pet img-fluid rounded-2 w-100">
+            <div class="cabeca-card-pet card-header p-4">
+              <div class="d-flex mb-4">
+                <a class="text-white text-decoration-none bg-warning fs-3 ps-1 pe-1 rounded-3" href="/adotai/view/cadastro-pet.php/?idPet=<?= $pet->getIdPet() ?>"><i class="bi bi-pencil-square"></i></a>
+                <a class="ms-2 text-white text-decoration-none bg-danger fs-3 ps-1 pe-1 rounded-3" href="/adotai/view/acoes/deletar-pet.php/?idPet=<?= $pet->getIdPet() ?>" onclick="return confirm('Deseja mesmo deletar o pet <?= $pet->getNomePet() ?>?')"><i class="bi bi-x-octagon"></i></a>
+              </div>
+              <div class="d-flex justify-content-center">
+                <img src="<?= $pet->getLinkImagemPet() ?>" class="imagem-pet img-fluid rounded-2 w-100">
+              </div>
             </div>
             <div class="corpo-card-pet p-4 card-body text-white">
               <div class="d-flex justify-content-center">
@@ -58,10 +64,6 @@ if (!$usuario) {
                 <p class="fw-bold me-1">Descrição:</p>
                 <p class="text-break"><?= $pet->getDescricaoPet() ?></p>
               </div>
-              <div class="d-flex">
-                <a class="text-white text-decoration-none bg-warning fs-3 ps-1 pe-1 rounded-3" href="/adotai/view/cadastro-pet.php/?idPet=<?= $pet->getIdPet() ?>"><i class="bi bi-pencil-square"></i></a>
-                <a></a>
-              </div>
             </div>
           </div>
         </div>
@@ -69,7 +71,7 @@ if (!$usuario) {
         $numeroDeCards++;
 
         if ($numeroDeCards === 3) {
-          echo "</div>\n<div class='container-lg d-flex flex-lg-row flex-column justify-content-between align-items-center'>";
+          echo "</div>\n<div class='container-lg d-flex flex-lg-row flex-column align-items-center'>";
           $numeroDeCards = 0;
         }
       endforeach;

@@ -23,7 +23,7 @@ if (!$usuario) {
       <button class="botao-meus-pets btn text-white text-decoration-none">Cadastrar pet</button>
     </a>
   </div>
-  <div class="container-lg d-flex flex-lg-row flex-column justify-content-between align-items-center">
+  <div class="container-lg d-flex flex-lg-row flex-column align-items-center">
     <?php
     $numeroDeCards = 0;
     foreach ($pets as $pet):
@@ -68,7 +68,7 @@ if (!$usuario) {
       $numeroDeCards++;
 
       if ($numeroDeCards === 3) {
-        echo "</div>\n<div class='container-lg d-flex flex-lg-row flex-column justify-content-between align-items-center'>";
+        echo "</div>\n<div class='container-lg d-flex flex-lg-row flex-column align-items-center'>";
         $numeroDeCards = 0;
       }
     endforeach;

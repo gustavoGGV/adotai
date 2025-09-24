@@ -94,6 +94,19 @@ class PetDAO
     }
   }
 
+  public function deletarPetPorId(string $idPet)
+  {
+    try {
+      $sql = "DELETE FROM Pet WHERE idPet = ?";
+      $stm = $this->conexao->prepare($sql);
+      $stm->execute([$idPet]);
+
+      return null;
+    } catch (PDOException $e) {
+      return $e;
+    }
+  }
+
   private function mapearPets(array $pets, bool $precisaDeAcolhedor = true)
   {
     $petsMapeados = array();
