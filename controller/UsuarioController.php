@@ -86,4 +86,11 @@ class UsuarioController
 
     return $erro;
   }
+
+  public function deletarUsuarioPorId(string $idUsu)
+  {
+    $erro = $this->usuarioDAO->deletarUsuarioPorId($idUsu);
+
+    return $erro;
+  }
 }
