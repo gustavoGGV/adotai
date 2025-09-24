@@ -17,7 +17,7 @@ class PetDAO
   public function dadosDeTodosOsPets()
   {
     try {
-      $sql = "SELECT p.*, e.nomeEsp, e.porteEsp, t.tipoTem, t.energiaTem, u.nomeUsu FROM Pet p JOIN Especie e ON (e.idEsp = p.idEsp) JOIN Temperamento t ON (t.idTem = p.idTem) JOIN Usuario u ON (u.idUsu = p.idUsu)";
+      $sql = "SELECT p.*, e.nomeEsp, e.porteEsp, t.tipoTem, t.energiaTem, u.nomeUsu FROM Pet p JOIN Especie e ON (e.idEsp = p.idEsp) JOIN Temperamento t ON (t.idTem = p.idTem) JOIN Usuario u ON (u.idUsu = p.idUsu) ORDER BY RAND()";
       $stm = $this->conexao->prepare($sql);
       $stm->execute();
       $pets = $stm->fetchAll();
@@ -44,6 +44,19 @@ class PetDAO
       }
 
       return $petsEncontradosMapeados;
+    } catch (PDOException $e) {
+      return $e;
+    }
+  }
+
+  public function inserirPet(Pet $pet)
+  {
+    try {
+      $sql = "INSERT INTO Pet (idPet, nomePet, sexoPet, descricaoPet, temRacaPet, idEsp, idTem, linkImagemPet, idUsu) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+      $stm = $this->conexao->prepare($sql);
+      $stm->execute([$pet->getIdPet(), $pet->getNomePet(), $pet->getSexoPet(), $pet->getDescricaoPet(), $pet->getTemRacaPet() ? 1 : 0, $pet->getEspecie()->getIdEsp(), $pet->getTemperamento()->getIdTem(), $pet->getLinkImagemPet(), $pet->getAcolhedor()->getIdUsu()]);
+
+      return null;
     } catch (PDOException $e) {
       return $e;
     }
