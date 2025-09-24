@@ -2,12 +2,12 @@
 
 require_once(__DIR__ . "/../../controller/PetController.php");
 
-if (!isset($_GET["idUsu"])) {
+if (!$_COOKIE) {
   header("location: /adotai/view/pagina-principal.php");
 }
 
 $petController = new PetController();
-$pets = $petController->buscarPetsPorIdDeUsuário($_GET["idUsu"]);
+$pets = $petController->buscarPetsPorIdDeUsuário($_COOKIE["idUsu"]);
 
 if ($pets instanceof PDOException) {
   echo "Erro de busca no banco de dados. Contate-nos: ajuda@adotai.com";

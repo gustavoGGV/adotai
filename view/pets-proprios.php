@@ -9,14 +9,14 @@ if (!$usuario) {
   header("location: /adotai/view/acoes/deslogar.php");
 }
 ?>
-<title>Adotaí | Pagina principal</title>
+<title>Adotaí | Meus Pets</title>
 </head>
 
 <body>
   <?php include_once(__DIR__ . "/componentes/navbar.html") ?>
 
   <div class="container">
-    <h4><a href="/adotai/view/pagina-principal.php" class="text-white text-decoration-none"><i class="bi bi-caret-left-fill"></i>Voltar</a></h4>
+    <h4><a href="/adotai/view/pagina-principal.php" class="text-black text-decoration-none"><i class="bi bi-caret-left-fill"></i>Voltar</a></h4>
   </div>
 
   <div class="container-lg d-flex flex-lg-row flex-column justify-content-between align-items-center">

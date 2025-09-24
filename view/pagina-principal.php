@@ -16,8 +16,11 @@ if (!$usuario) {
   <?php include_once(__DIR__ . "/componentes/navbar.html") ?>
 
   <div class="container">
-    <a href="/adotai/view/pets-proprios.php/?idUsu=<?= $usuario->getIdUsu() ?>">
+    <a href="/adotai/view/pets-proprios.php" class="me-3 text-decoration-none">
       <button class="botao-meus-pets btn text-white text-decoration-none">Meus pets</button>
+    </a>
+    <a href="/adotai/view/cadastro-pet.php">
+      <button class="botao-meus-pets btn text-white text-decoration-none">Cadastrar pet</button>
     </a>
   </div>
   <div class="container-lg d-flex flex-lg-row flex-column justify-content-between align-items-center">
@@ -64,8 +67,7 @@ if (!$usuario) {
     <?php
       $numeroDeCards++;
 
-      // Se o número de cards é 3, a linha é quebrada. Também, é checado se o número de pets é não divsível por 3, para assim não criar uma div inútil quando será fileiras exatas. 
-      if ($numeroDeCards === 3 && count($pets) % 3 != 0) {
+      if ($numeroDeCards === 3) {
         echo "</div>\n<div class='container-lg d-flex flex-lg-row flex-column justify-content-between align-items-center'>";
         $numeroDeCards = 0;
       }
