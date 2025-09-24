@@ -35,7 +35,7 @@ if (isset($_POST["input-numero"])) {
 
   $telefoneUsu = trim($_POST["input-numero"]) ? trim($_POST["input-numero"]) : null;
 
-  $usuario = new Usuario(guidv4(), $nomeUsu, $telefoneUsu, $dataNascimentoUsu, $cepUsu, $complementoUsu, $senhaUsu, $tamanhoSenhaUsu, $confirmacaoSenhaUsu, "c", "c");
+  $usuario = new Usuario(guidv4(), $nomeUsu, $telefoneUsu, $dataNascimentoUsu, $cepUsu, $complementoUsu, $senhaUsu, $tamanhoSenhaUsu, $confirmacaoSenhaUsu, "c", "c", false);
 
   $usuarioController = new UsuarioController();
   $invalidades = $usuarioController->inserirUsuario($usuario);
