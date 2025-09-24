@@ -43,7 +43,7 @@ if (!isset($_GET["idUsu"])) {
       if (!$usuario->getBanidoUsu()):
     ?>
         <a href="/adotai/view/acoes/banir-desbanir.php/?idUsu=<?= $dadosDoPerfilAcessado->getIdUsu() ?>&banir=1">
-          <button class="btn bg-danger mb-4" onclick="return confirm('Deseja mesmo banir o usuário <?= $dadosDoPerfilAcessado->getNomeUsu() ?>?')">
+          <button class="btn bg-danger mb-4 text-white text-decoration-none" onclick="return confirm('Deseja mesmo banir o usuário <?= $dadosDoPerfilAcessado->getNomeUsu() ?>?')">
             Banir usuário
           </button>
         </a>
@@ -51,7 +51,7 @@ if (!isset($_GET["idUsu"])) {
       else:
       ?>
         <a href="/adotai/view/acoes/banir-desbanir.php/?idUsu=<?= $dadosDoPerfilAcessado->getIdUsu() ?>&banir=0">
-          <button class="btn bg-danger mb-4" onclick="return confirm('Deseja mesmo banir o usuário <?= $dadosDoPerfilAcessado->getNomeUsu() ?>?')">
+          <button class="btn bg-danger mb-4 text-white text-decoration-none" onclick="return confirm('Deseja mesmo banir o usuário <?= $dadosDoPerfilAcessado->getNomeUsu() ?>?')">
             Desbanir <?= $dadosDoPerfilAcessado->getNomeUsu() ?>
           </button>
         </a>
