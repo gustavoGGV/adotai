@@ -31,7 +31,7 @@ if (isset($_POST["input-numero"])) {
   // Pega a tamanho da senha, encripta ela em formato hash e depois a compara com a confirmação de senha.
   $tamanhoSenhaUsu = strlen(trim($_POST["input-senha"]));
   $senhaUsu = trim($_POST["input-senha"]) ? password_hash(trim($_POST["input-senha"]), PASSWORD_DEFAULT) : null;
-  $confirmacaoSenhaUsu = password_verify(trim($_POST["input-confirmar-senha"]), $senhaUsu);
+  $confirmacaoSenhaUsu = trim($_POST["input-confirmar-senha"]) ? password_verify(trim($_POST["input-confirmar-senha"]), $senhaUsu) : false;
 
   $telefoneUsu = trim($_POST["input-numero"]) ? trim($_POST["input-numero"]) : null;
 

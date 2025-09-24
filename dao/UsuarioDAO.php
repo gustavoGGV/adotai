@@ -136,6 +136,25 @@ class UsuarioDAO
     }
   }
 
+  public function dadosDeTodosOsUsuarios()
+  {
+    try {
+      $sql = "SELECT * FROM Usuario";
+      $stm = $this->conexao->prepare($sql);
+      $stm->execute();
+      $usuarios = $stm->fetchAll();
+
+      $usuariosMapeados = null;
+      if ($usuarios) {
+        $usuariosMapeados = $this->mapearUsuarios($usuarios);
+      }
+
+      return $usuariosMapeados;
+    } catch (PDOException $e) {
+      return $e;
+    }
+  }
+
   private function mapearUsuarios(array $usuarios)
   {
     $usuariosMapeados = array();
