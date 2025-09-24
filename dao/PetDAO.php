@@ -30,7 +30,26 @@ class PetDAO
     }
   }
 
-  private function mapearPets(array $pets)
+  public function buscarPetsPorIdDeUsuário(string $idUsu)
+  {
+    try {
+      $sql = "SELECT p.*, e.nomeEsp, e.porteEsp, t.tipoTem, t.energiaTem FROM Pet p JOIN Especie e ON (e.idEsp = p.idEsp) JOIN Temperamento t ON (t.idTem = p.idTem) WHERE idUsu = ?";
+      $stm = $this->conexao->prepare($sql);
+      $stm->execute([$idUsu]);
+      $petsEncontrados = $stm->fetchAll();
+
+      $petsEncontradosMapeados = null;
+      if ($petsEncontrados) {
+        $petsEncontradosMapeados = $this->mapearPets($petsEncontrados, false);
+      }
+
+      return $petsEncontradosMapeados;
+    } catch (PDOException $e) {
+      return $e;
+    }
+  }
+
+  private function mapearPets(array $pets, bool $precisaDeAcolhedor = true)
   {
     $petsMapeados = array();
 
@@ -39,9 +58,12 @@ class PetDAO
       $temperamento = new Temperamento($pet["idTem"], $pet["tipoTem"], $pet["energiaTem"]);
 
       // Somente o nome e id são necessários para a página principal.
-      $acolhedor = new Usuario($pet["idUsu"], $pet["nomeUsu"], null, null, null, null, null, null, null, null, null);
-
-      $petMapeado = new Pet($pet["idPet"], $pet["nomePet"], $pet["sexoPet"], $pet["descricaoPet"], $pet["temRacaPet"], $especie, $temperamento, $pet["linkImagemPet"], $acolhedor);
+      if ($precisaDeAcolhedor) {
+        $acolhedor = new Usuario($pet["idUsu"], $pet["nomeUsu"], null, null, null, null, null, null, null, null, null, null);
+        $petMapeado = new Pet($pet["idPet"], $pet["nomePet"], $pet["sexoPet"], $pet["descricaoPet"], $pet["temRacaPet"], $especie, $temperamento, $pet["linkImagemPet"], $acolhedor);
+      } else {
+        $petMapeado = new Pet($pet["idPet"], $pet["nomePet"], $pet["sexoPet"], $pet["descricaoPet"], $pet["temRacaPet"], $especie, $temperamento, $pet["linkImagemPet"], null);
+      }
 
       array_push($petsMapeados, $petMapeado);
     }

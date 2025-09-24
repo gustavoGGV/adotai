@@ -3,7 +3,7 @@ include_once(__DIR__ . "/acoes/adquirir-informacao-do-usuario.php");
 include_once(__DIR__ . "/acoes/entrar.php");
 include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
 
-if( $usuario ) {
+if ($usuario && !$usuario->getBanidoUsu()) {
   header("location: /adotai/view/pagina-principal.php");
 }
 ?>

@@ -79,4 +79,11 @@ class UsuarioController
 
     return $jaExiste;
   }
+
+  public function banirOuDesbanirUsuario(string $idUsu, bool $banir)
+  {
+    $erro = $this->usuarioDAO->banirOuDesbanirUsuario($idUsu, $banir);
+
+    return $erro;
+  }
 }

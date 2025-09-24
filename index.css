@@ -48,8 +48,20 @@ footer,
   display: none;
 }
 
+/* Alterar visibilidade da imagem de acordo com o tamanho da tela. */
+@media screen and (max-width: 900px) {
+  .imagem-pet {
+    height: 200px;
+  }
+}
+
+@media screen and (min-width: 901px) {
+  .imagem-pet {
+    height: 300px;
+  }
+}
+
 .imagem-pet {
-  height: 300px;
   object-fit: cover;
   object-position: center;
 }
