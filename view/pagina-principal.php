@@ -15,6 +15,11 @@ if (!$usuario) {
 <body>
   <?php include_once(__DIR__ . "/componentes/navbar.html") ?>
 
+  <div class="container">
+    <a href="/adotai/view/pets-proprios.php/?idUsu=<?= $usuario->getIdUsu() ?>">
+      <button class="botao-meus-pets btn text-white text-decoration-none">Meus pets</button>
+    </a>
+  </div>
   <div class="container-lg d-flex flex-lg-row flex-column justify-content-between align-items-center">
     <?php
     $numeroDeCards = 0;

@@ -38,7 +38,8 @@ footer,
 .cadastrar .cabeca-cadastrar,
 .botao-alterar,
 .botao-alterar:hover,
-.cabeca-card-pet {
+.cabeca-card-pet,
+.botao-meus-pets {
   background-color: #382110;
 }
 
