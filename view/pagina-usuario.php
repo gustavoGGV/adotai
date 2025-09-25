@@ -48,7 +48,7 @@ if (!isset($_GET["idUsu"])) {
 
         return;
       endif;
-      if ($usuario && $usuario->getTipoUsu() === "a"):
+      if ($usuario && $usuario->getTipoUsu() === "a" && $usuario->getIdUsu() != $dadosDoPerfilAcessado->getIdUsu() && $dadosDoPerfilAcessado->getTipoUsu() === "c"):
         if (!$dadosDoPerfilAcessado->getBanidoUsu()):
       ?>
           <a href="/adotai/view/acoes/banir-desbanir.php/?idUsu=<?= $dadosDoPerfilAcessado->getIdUsu() ?>&banir=1">
