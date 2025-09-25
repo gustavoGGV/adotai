@@ -67,25 +67,41 @@ include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
                 <td><?= $dadosUsuario->getBanidoUsu() ? "Sim" : "Não" ?></td>
                 <td>
                   <?php
-                  if ($dadosUsuario->getBanidoUsu()):
+                  if ($dadosUsuario->getTipoUsu() === "a"):
                   ?>
-                    <a class="text-white text-decoration-none bg-success fs-3 ps-1 pe-1 rounded-3" href="/adotai/view/acoes/banir-desbanir.php/?idUsu=<?= $dadosUsuario->getIdUsu() ?>&banir=0" onclick="return confirm('Deseja mesmo desbanir o usuário <?= $dadosUsuario->getNomeUsu() ?>?')">
-                      <i class="bi bi-slash-circle"></i>
-                    </a>
-                  <?php
+                    -
+                    <?php
                   else:
-                  ?>
-                    <a class="text-white text-decoration-none bg-danger fs-3 ps-1 pe-1 rounded-3" href="/adotai/view/acoes/banir-desbanir.php/?idUsu=<?= $dadosUsuario->getIdUsu() ?>&banir=1" onclick="return confirm('Deseja mesmo banir o usuário <?= $dadosUsuario->getNomeUsu() ?>?')">
-                      <i class="bi bi-slash-circle"></i>
-                    </a>
+                    if ($dadosUsuario->getBanidoUsu()):
+                    ?>
+                      <a class="text-white text-decoration-none bg-success fs-3 ps-1 pe-1 rounded-3" href="/adotai/view/acoes/banir-desbanir.php/?idUsu=<?= $dadosUsuario->getIdUsu() ?>&banir=0" onclick="return confirm('Deseja mesmo desbanir o usuário <?= $dadosUsuario->getNomeUsu() ?>?')">
+                        <i class="bi bi-slash-circle"></i>
+                      </a>
+                    <?php
+                    else:
+                    ?>
+                      <a class="text-white text-decoration-none bg-danger fs-3 ps-1 pe-1 rounded-3" href="/adotai/view/acoes/banir-desbanir.php/?idUsu=<?= $dadosUsuario->getIdUsu() ?>&banir=1" onclick="return confirm('Deseja mesmo banir o usuário <?= $dadosUsuario->getNomeUsu() ?>?')">
+                        <i class="bi bi-slash-circle"></i>
+                      </a>
                   <?php
+                    endif;
                   endif;
                   ?>
                 </td>
                 <td>
-                  <a class="text-white text-decoration-none bg-danger fs-3 ps-1 pe-1 rounded-3" href="/adotai/view/acoes/excluir-conta.php/?idUsu=<?= $dadosUsuario->getIdUsu() ?>" onclick="return confirm('Deseja mesmo deletar o usuário <?= $dadosUsuario->getNomeUsu() ?>?')">
-                    <i class="bi bi-x-octagon"></i>
-                  </a>
+                  <?php
+                  if ($dadosUsuario->getTipoUsu() === "a"):
+                  ?>
+                    -
+                  <?php
+                  else:
+                  ?>
+                    <a class="text-white text-decoration-none bg-danger fs-3 ps-1 pe-1 rounded-3" href="/adotai/view/acoes/excluir-conta.php/?idUsu=<?= $dadosUsuario->getIdUsu() ?>" onclick="return confirm('Deseja mesmo deletar o usuário <?= $dadosUsuario->getNomeUsu() ?>?')">
+                      <i class="bi bi-x-octagon"></i>
+                    </a>
+                  <?php
+                  endif;
+                  ?>
                 </td>
               </tr>
             <?php
