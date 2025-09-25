@@ -7,21 +7,6 @@ require_once(__DIR__ . "/../../model/Temperamento.php");
 require_once(__DIR__ . "/../../model/Usuario.php");
 require_once(__DIR__ . "/../../controller/PetController.php");
 
-// Função que cria UUID's aleatórias.
-function guidv4()
-{
-  // Checa se essa função "com_create_guid" existe (ela é presente no Windows por padrão); caso ela exista, é gerada uma UUID envolta de chaves e é retornada tirando as chaves por trim.
-  if (function_exists('com_create_guid') === true) {
-    return trim(com_create_guid(), '{}');
-  }
-
-  // Código que achei na internet para gerar UUID's. Crédito: https://www.php.net/manual/en/function.com-create-guid.php, usuário "pavel.volyntsev(at)gmail".
-  $data = openssl_random_pseudo_bytes(16);
-  $data[6] = chr(ord($data[6]) & 0x0f | 0x40); // set version to 0100
-  $data[8] = chr(ord($data[8]) & 0x3f | 0x80); // set bits 6-7 to 10
-  return vsprintf('%s%s-%s-%s-%s-%s%s%s', str_split(bin2hex($data), 4));
-}
-
 $cadastro = null;
 $mensagensDeInvalidade = null;
 $petController = new PetController();
@@ -39,7 +24,15 @@ if (isset($_GET["idPet"])) {
 if (isset($_POST["input-nome-pet"])) {
   $nomePet = trim($_POST["input-nome-pet"]) ? trim($_POST["input-nome-pet"]) : null;
   $sexoPet = trim($_POST["select-sexo-pet"]) ? trim($_POST["select-sexo-pet"]) : null;
-  $temRacaPet = trim($_POST["select-raca-pet"]) ? intval(trim($_POST["select-raca-pet"])) : null;
+  $temRacaPet = isset($_POST["select-raca-pet"]) ? intval(trim($_POST["select-raca-pet"])) : null;
+
+  if ($temRacaPet) {
+    if ($temRacaPet === 1) {
+      $temRacaPet = true;
+    } else {
+      $temRacaPet = false;
+    }
+  }
 
   $idEsp = trim($_POST["select-especie-pet"]) ? trim($_POST["select-especie-pet"]) : null;
   $especie = new Especie($idEsp, null, null);
@@ -58,9 +51,9 @@ if (isset($_POST["input-nome-pet"])) {
     }
 
     $acolhedor = new Usuario($usuario->getIdUsu(), $usuario->getNomeUsu(), null, null, null, null, null, null, null, null, null, null);
-    $cadastro = new Pet(guidv4(), $nomePet, $sexoPet, $descricaoPet, intval($temRacaPet) === 1 ? true : false, $especie, $temperamento, $linkImagemPet, $acolhedor);
+    $cadastro = new Pet(null, $nomePet, $sexoPet, $descricaoPet, $temRacaPet, $especie, $temperamento, $linkImagemPet, $acolhedor);
   } else {
-    $cadastro = new Pet($_GET["idPet"], $nomePet, $sexoPet, $descricaoPet, intval($temRacaPet) === 1 ? true : false, $especie, $temperamento, $linkImagemPet, null);
+    $cadastro = new Pet($_GET["idPet"], $nomePet, $sexoPet, $descricaoPet, $temRacaPet, $especie, $temperamento, $linkImagemPet, null);
   }
 
   $invalidades = null;

@@ -2,7 +2,7 @@
 
 class Pet
 {
-  private ?string $idPet;
+  private ?int $idPet;
   private ?string $nomePet;
   private ?string $sexoPet;
   private ?string $descricaoPet;
@@ -25,7 +25,7 @@ class Pet
     $this->acolhedor = $acolhedor;
   }
 
-  public function getIdPet(): ?string
+  public function getIdPet(): ?int
   {
     return $this->idPet;
   }

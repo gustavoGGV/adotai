@@ -12,11 +12,11 @@ else :
   <title>Adotaí | Perfil</title>
   </head>
 
-  <body>
+  <body class="d-flex flex-column min-vh-100">
     <?php
     include_once(__DIR__ . "/componentes/navbar.html");
     ?>
-    <form action="" method="post" class="container d-flex flex-lg-row flex-column">
+    <form action="" method="post" class="container d-flex flex-lg-row flex-column flex-fill">
       <div class="imagem-perfil-usuario col-lg-3 col-12">
         <div class="imagem-usuario-container d-flex justify-content-center">
           <img src="/adotai/util/user-cachorro.png" id="imagem-perfil" class="w-lg-75 ms-lg-2">

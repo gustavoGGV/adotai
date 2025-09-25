@@ -23,8 +23,9 @@ if (isset($_POST["input-numero"])) {
   } else if ($usuario->getBanidoUsu()) {
     $erro = "Esta conta está banida do Adotaí";
   } else {
-    // Cookie com o ID do usuário que entrou na sessão. Expira em 120 dias.
-    setcookie("idUsu", $usuario->getIdUsu(), time() + 60 * 60 * 24 * 120, "/", "", false, true);
+    // Cookie com o ID do usuário (em hash) que entrou na sessão. Expira em 120 dias.
+    setcookie("idUsu", password_hash($usuario->getIdUsu(), PASSWORD_DEFAULT), time() + 60 * 60 * 24 * 120, "/", "", false, true);
+    setcookie("telefoneUsu", $usuario->getTelefoneUsu(), time() + 60 * 60 * 24 * 120, "/", "", false, true);
 
     header("location: /adotai/view/pagina-principal.php");
   }

@@ -126,9 +126,10 @@ class UsuarioDAO
   public function deletarUsuarioPorId(string $idUsu)
   {
     try {
-      $sql = "DELETE FROM Usuario WHERE idUsu = ?";
+      // Como os pets possuem a relação com a conta do usuário, também é necessário deletá-los.
+      $sql = "DELETE FROM Pet WHERE idUsu = ?; DELETE FROM Usuario WHERE idUsu = ?";
       $stm = $this->conexao->prepare($sql);
-      $stm->execute([$idUsu]);
+      $stm->execute([$idUsu, $idUsu]);
 
       return null;
     } catch (PDOException $e) {
@@ -150,6 +151,28 @@ class UsuarioDAO
       }
 
       return $usuariosMapeados;
+    } catch (PDOException $e) {
+      return $e;
+    }
+  }
+
+  public function encontrarUsuarioPorIdEmHash(string $hashId, string $telefoneUsu)
+  {
+    try {
+      $sql = "SELECT * FROM Usuario WHERE telefoneUsu = ?";
+      $stm = $this->conexao->prepare($sql);
+      $stm->execute([$telefoneUsu]);
+      $usuario = $stm->fetchall();
+
+      if (count($usuario) > 0 && count($usuario) < 2) {
+        $usuarioMapeado = $this->mapearUsuarios($usuario);
+
+        if (password_verify($usuarioMapeado[0]->getIdUsu(), $hashId)) {
+          return $usuarioMapeado[0];
+        }
+      }
+
+      return null;
     } catch (PDOException $e) {
       return $e;
     }

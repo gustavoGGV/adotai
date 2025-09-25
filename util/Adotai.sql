@@ -14,7 +14,7 @@ CREATE TABLE Especie (
 );
 
 CREATE TABLE Usuario (
-	idUsu VARCHAR(36) PRIMARY KEY,
+	idUsu INT PRIMARY KEY AUTO_INCREMENT,
     nomeUsu VARCHAR(80) NOT NULL,
     dataNascimentoUsu DATE NOT NULL,
     cepUsu VARCHAR(9) NOT NULL,
@@ -27,7 +27,7 @@ CREATE TABLE Usuario (
 );
 
 CREATE TABLE Pet (
-	idPet VARCHAR(36) PRIMARY KEY,
+	idPet INT PRIMARY KEY AUTO_INCREMENT,
     nomePet VARCHAR(80) NOT NULL,
     sexoPet ENUM("f", "m") NOT NULL,
     descricaoPet TEXT NOT NULL,
@@ -35,7 +35,7 @@ CREATE TABLE Pet (
     idEsp INT NOT NULL,
     idTem INT NOT NULL,
     linkImagemPet TEXT NOT NULL,
-    idUsu TEXT NOT NULL,
+    idUsu INT NOT NULL,
     FOREIGN KEY(idEsp) REFERENCES Especie(idEsp),
     FOREIGN KEY(idTem) REFERENCES Temperamento(idTem),
     FOREIGN KEY(idUsu) REFERENCES Usuario(idUsu)
