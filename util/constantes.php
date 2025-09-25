@@ -3,7 +3,7 @@
 // Configurar essas variáveis de acordo com o seu ambiente
 define("DB_HOST", "localhost");
 define("DB_USER", "root");
-define("DB_SENHA", "sounoob");
+define("DB_SENHA", "");
 
 // Ambiente DEV
 define("AMBIENTE_DEV", true);
