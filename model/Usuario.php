@@ -2,7 +2,7 @@
 
 class Usuario
 {
-  private ?string $idUsu;
+  private ?int $idUsu;
   private ?string $nomeUsu;
   private ?string $telefoneUsu;
   private ?string $dataNascimentoUsu;
@@ -31,7 +31,7 @@ class Usuario
     $this->banidoUsu = $banidoUsu;
   }
 
-  public function getIdUsu(): ?string
+  public function getIdUsu(): ?int
   {
     return $this->idUsu;
   }

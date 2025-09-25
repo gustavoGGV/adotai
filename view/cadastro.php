@@ -36,6 +36,7 @@ if ($usuario) {
                   <div class="mt-4 col-12">
                     <span class="text-white">Senha *</span>
                     <input type="password" id="input-senha" name="input-senha" placeholder="informe uma senha..." class="col-12 form-control">
+                    <span class="text-white fs-6">A senha deve conter pelo menos 8 caracteres</span>
                   </div>
                   <div class="mt-4 col-12">
                     <span class="text-white">Confirmar senha *</span>

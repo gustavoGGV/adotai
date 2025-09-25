@@ -38,10 +38,7 @@ class PetDAO
       $stm->execute([$idUsu]);
       $petsEncontrados = $stm->fetchAll();
 
-      $petsEncontradosMapeados = null;
-      if ($petsEncontrados) {
-        $petsEncontradosMapeados = $this->mapearPets($petsEncontrados, false);
-      }
+      $petsEncontradosMapeados = $this->mapearPets($petsEncontrados, false);
 
       return $petsEncontradosMapeados;
     } catch (PDOException $e) {

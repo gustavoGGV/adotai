@@ -100,4 +100,11 @@ class UsuarioController
 
     return $usuarios;
   }
+
+  public function encontrarUsuarioPorIdEmHash(string $hashId, string $telefoneUsu)
+  {
+    $usuario = $this->usuarioDAO->encontrarUsuarioPorIdEmHash($hashId, $telefoneUsu);
+
+    return $usuario;
+  }
 }
