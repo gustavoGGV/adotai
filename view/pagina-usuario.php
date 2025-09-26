@@ -112,9 +112,9 @@ if (!isset($_GET["idUsu"])) {
               ?>
                   <div class="p-3 col-lg-4 col-11">
                     <div class="card-pet card">
-                      <div class="cabeca-card-pet card-header p-4 d-flex justify-content-center">
+                      <a href="<?= $pet->getLinkImagemPet() ?>" target="_blank" class="cabeca-card-pet card-header p-4 d-flex justify-content-center">
                         <img src="<?= $pet->getLinkImagemPet() ?>" class="imagem-pet img-fluid rounded-2 w-100">
-                      </div>
+                      </a>
                       <div class="corpo-card-pet p-4 card-body text-white">
                         <div class="d-flex justify-content-center">
                           <h2 class="fw-bold mb-3"><?= $pet->getNomePet() ?></h2>
