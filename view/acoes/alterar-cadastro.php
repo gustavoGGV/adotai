@@ -31,14 +31,14 @@ if (isset($_POST["input-numero"])) {
   }
 
   $telefoneUsu = trim($_POST["input-numero"]) ? trim($_POST["input-numero"]) : null;
-  $tipoImagemPerfilUsu = $_POST["input-imagem-cachorro"] ? "c" : "g";
+  $tipoImagemPerfilUsu = !isset($_POST["input-imagem-gato"]) && isset($_POST["input-imagem-cachorro"]) ? "c" : "g";
 
   $usuarioController = new UsuarioController();
 
   if ($alteracaoDeSenha) {
     // Falso erro do Intelephense: ele acredita que $usuario só pode ser null, mas não é o caso da aplicação.
     $alteracoesUsuario = new Usuario($usuario->getIdUsu(), $nomeUsu, $telefoneUsu, $dataNascimentoUsu, $cepUsu, $complementoUsu, $senhaNovaUsu, $tamanhoSenhaNovaUsu, $confirmacaoSenhaNovaUsu, null, $tipoImagemPerfilUsu, false);
-    $invalidades = $usuarioController->alterarInformacoesUsuario($alteracoesUsuario, true, $inputSenhaAtualUsu, $usuario["senhaUsu"]);
+    $invalidades = $usuarioController->alterarInformacoesUsuario($alteracoesUsuario, true, $inputSenhaAtualUsu, $usuario->getSenhaUsu());
   } else {
     // Preenche somente os atributos que são necessários.
     $alteracoesUsuario = new Usuario($usuario->getIdUsu(), $nomeUsu, $telefoneUsu, $dataNascimentoUsu, $cepUsu, $complementoUsu, null, null, null, null, $tipoImagemPerfilUsu, false);
