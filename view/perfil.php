@@ -74,7 +74,7 @@ else :
           <a href="<?= URL_BASE ?>/view/acoes/deslogar.php" class="bg-danger col-lg-4 col-8 mt-4 text-white btn">
             Sair
           </a>
-          <a href="<?= URL_BASE ?>/view/acoes/excluir-conta.php/?idUsu=<?= $usuario->getIdUsu() ?>" class="bg-danger col-lg-4 col-8 mt-4 text-white btn" onclick="return confirm('Deseja mesmo deletar sua conta?')">
+          <a href="<?= URL_BASE ?>/view/acoes/excluir-conta.php?idUsu=<?= $usuario->getIdUsu() ?>" class="bg-danger col-lg-4 col-8 mt-4 text-white btn" onclick="return confirm('Deseja mesmo deletar sua conta?')">
             Excluir conta
           </a>
         </div>

@@ -29,6 +29,6 @@ if (isset($_POST["input-numero"])) {
     // Junta todas as mensagens de invalidade dentro de uma string separadas por <br>.
     $mensagensDeInvalidade = implode("<br>", $invalidades);
   } else {
-    header("location: " . URLBASE . "/view/login.php");
+    header("location: " . URL_BASE . "/view/login.php");
   }
 }

@@ -15,4 +15,3 @@ if (AMBIENTE_DEV) {
 }
 
 define("URL_BASE", "");
-

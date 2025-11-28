@@ -4,7 +4,7 @@ require_once(__DIR__ . "/../../controller/PetController.php");
 
 
 if (!isset($_COOKIE["idUsu"]) || !isset($_COOKIE["telefoneUsu"])) {
-  header("location: " . URLBASE . "/view/pagina-principal.php");
+  header("location: " . URL_BASE . "/view/pagina-principal.php");
 }
 
 $petController = new PetController();

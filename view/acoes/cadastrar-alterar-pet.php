@@ -65,6 +65,6 @@ if (isset($_POST["input-nome-pet"])) {
   if ($invalidades) {
     $mensagensDeInvalidade = implode("<br>", $invalidades);
   } else {
-    header("location: " . URLBASE . "/view/pets-proprios.php");
+    header("location: " . URL_BASE . "/view/pets-proprios.php");
   }
 }
