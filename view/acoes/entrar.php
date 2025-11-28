@@ -27,6 +27,6 @@ if (isset($_POST["input-numero"])) {
     setcookie("idUsu", password_hash($usuario->getIdUsu(), PASSWORD_DEFAULT), time() + 60 * 60 * 24 * 120, "/", "", false, true);
     setcookie("telefoneUsu", $usuario->getTelefoneUsu(), time() + 60 * 60 * 24 * 120, "/", "", false, true);
 
-    header("location " . URL_BASE . "view/pagina-principal.php");
+    header("location: " . URLBASE . "/view/pagina-principal.php");
   }
 }

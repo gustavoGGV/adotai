@@ -4,9 +4,9 @@ include_once(__DIR__ . "/acoes/alterar-cadastro.php");
 include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
 
 if (!$usuario) :
-  header("location " . URL_BASE . "view/login.php");
+  header("location " . URL_BASE . "/view/login.php");
 elseif ($usuario->getBanidoUsu()) :
-  header("location " . URL_BASE . "view/acoes/deslogar.php");
+  header("location " . URL_BASE . "/view/acoes/deslogar.php");
 else :
 ?>
   <title>Adotaí | Perfil</title>

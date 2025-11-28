@@ -8,7 +8,7 @@ $alteracaoDeSenha = false;
 $mensagensDeInvalidade = null;
 
 if (!$usuario) {
-  header("location " . URL_BASE . "view/pagina-principal.php");
+  header("location: " . URLBASE . "/view/pagina-principal.php");
 }
 
 if (isset($_POST["input-numero"])) {
@@ -50,6 +50,6 @@ if (isset($_POST["input-numero"])) {
     // Junta todas as mensagens de invalidade dentro de uma string separadas por <br>.
     $mensagensDeInvalidade = implode("<br>", $invalidades);
   } else {
-    header("location " . URL_BASE . "view/pagina-principal.php");
+    header("location: " . URLBASE . "/view/pagina-principal.php");
   }
 }

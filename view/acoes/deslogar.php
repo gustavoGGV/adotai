@@ -6,4 +6,4 @@ if ($_COOKIE) {
   setcookie("telefoneUsu", "", time() - 60 * 60 * 24 * 120, "/", "", false, true);
 }
 
-header("location " . URL_BASE . "view/login.php");
+header("location: " . URLBASE . "/view/login.php");

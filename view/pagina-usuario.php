@@ -7,13 +7,13 @@ include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
 $dadosDoPerfilAcessado = null;
 
 if (!$usuario) {
-  header("location " . URL_BASE . "view/login.php");
+  header("location " . URL_BASE . "/view/login.php");
 } else if ($usuario->getBanidoUsu()) {
-  header("location " . URL_BASE . "view/acoes/deslogar.php");
+  header("location " . URL_BASE . "/view/acoes/deslogar.php");
 }
 
 if (!isset($_GET["idUsu"])) {
-  header("location " . URL_BASE . "view/pagina-principal.php");
+  header("location " . URL_BASE . "/view/pagina-principal.php");
 } else {
   $usuarioController = new UsuarioController();
   $dadosDoPerfilAcessado = $usuarioController->encontrarUsuarioPorId($_GET["idUsu"]);

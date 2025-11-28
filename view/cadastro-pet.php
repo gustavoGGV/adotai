@@ -236,7 +236,7 @@ include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
         if  (erros) {
           divErro.innerHTML = erros;
         } else {
-          window.location = "pets-proprios.php";
+          window.location = URL_BASE + "/view/pets-proprios.php";
         }
       }
 

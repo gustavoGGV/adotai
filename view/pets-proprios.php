@@ -4,9 +4,9 @@ include_once(__DIR__ . "/acoes/adquirir-informacoes-dos-pets-do-usuario.php");
 include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
 
 if (!$usuario) {
-  header("location " . URL_BASE . "view/login.php");
+  header("location: " . URL_BASE . "/view/login.php");
 } else if ($usuario->getBanidoUsu()) {
-  header("location " . URL_BASE . "view/acoes/deslogar.php");
+  header("location: " . URL_BASE . "/view/acoes/deslogar.php");
 }
 ?>
 <title>Adotaí | Meus Pets</title>

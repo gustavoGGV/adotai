@@ -3,7 +3,7 @@
 require_once(__DIR__ . "/../../controller/UsuarioController.php");
 
 if (!isset($_GET["idUsu"])) {
-  header("location " . URL_BASE . "view/pagina-principal.php");
+  header("location: " . URLBASE . "/view/pagina-principal.php");
 } else {
   $usuarioController = new UsuarioController();
   $erro = $usuarioController->deletarUsuarioPorId($_GET["idUsu"]);
