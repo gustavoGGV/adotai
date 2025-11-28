@@ -4,6 +4,7 @@ require_once(__DIR__ . "/../util/Conexao.php");
 require_once(__DIR__ . "/../model/Pet.php");
 require_once(__DIR__ . "/../model/Especie.php");
 require_once(__DIR__ . "/../model/Temperamento.php");
+require_once(__DIR__ . "/../model/Raca.php");
 
 class PetDAO
 {
@@ -17,7 +18,7 @@ class PetDAO
   public function dadosDeTodosOsPets()
   {
     try {
-      $sql = "SELECT p.*, e.nomeEsp, e.porteEsp, t.tipoTem, t.energiaTem, u.nomeUsu FROM Pet p JOIN Especie e ON (e.idEsp = p.idEsp) JOIN Temperamento t ON (t.idTem = p.idTem) JOIN Usuario u ON (u.idUsu = p.idUsu) ORDER BY RAND()";
+      $sql = "SELECT p.*, e.nomeEsp, e.porteEsp, t.tipoTem, t.energiaTem, u.nomeUsu, r.nomeRaca FROM Pet p JOIN Especie e ON (e.idEsp = p.idEsp) JOIN Temperamento t ON (t.idTem = p.idTem) JOIN Usuario u ON (u.idUsu = p.idUsu) LEFT JOIN Raca r on (r.idRaca = p.idRaca) ORDER BY RAND()";
       $stm = $this->conexao->prepare($sql);
       $stm->execute();
       $pets = $stm->fetchAll();
@@ -33,7 +34,7 @@ class PetDAO
   public function buscarPetsPorIdDeUsuário(string $idUsu)
   {
     try {
-      $sql = "SELECT p.*, e.nomeEsp, e.porteEsp, t.tipoTem, t.energiaTem FROM Pet p JOIN Especie e ON (e.idEsp = p.idEsp) JOIN Temperamento t ON (t.idTem = p.idTem) WHERE idUsu = ?";
+      $sql = "SELECT p.*, e.nomeEsp, e.porteEsp, t.tipoTem, t.energiaTem, r.nomeRaca FROM Pet p JOIN Especie e ON (e.idEsp = p.idEsp) JOIN Temperamento t ON (t.idTem = p.idTem) LEFT JOIN Raca r on (r.idRaca = p.idRaca) WHERE idUsu = ?";
       $stm = $this->conexao->prepare($sql);
       $stm->execute([$idUsu]);
       $petsEncontrados = $stm->fetchAll();
@@ -49,9 +50,9 @@ class PetDAO
   public function inserirPet(Pet $pet)
   {
     try {
-      $sql = "INSERT INTO Pet (idPet, nomePet, sexoPet, descricaoPet, temRacaPet, idEsp, idTem, linkImagemPet, idUsu) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+      $sql = "INSERT INTO Pet (idPet, nomePet, sexoPet, descricaoPet, idEsp, idTem, linkImagemPet, idUsu, idRaca) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
       $stm = $this->conexao->prepare($sql);
-      $stm->execute([$pet->getIdPet(), $pet->getNomePet(), $pet->getSexoPet(), $pet->getDescricaoPet(), $pet->getTemRacaPet() ? 1 : 0, $pet->getEspecie()->getIdEsp(), $pet->getTemperamento()->getIdTem(), $pet->getLinkImagemPet(), $pet->getAcolhedor()->getIdUsu()]);
+      $stm->execute([$pet->getIdPet(), $pet->getNomePet(), $pet->getSexoPet(), $pet->getDescricaoPet(), $pet->getEspecie()->getIdEsp(), $pet->getTemperamento()->getIdTem(), $pet->getLinkImagemPet(), $pet->getAcolhedor()->getIdUsu(), $pet->getRaca()->getIdRaca() ? $pet->getRaca()->getIdRaca() : null]);
 
       return null;
     } catch (PDOException $e) {
@@ -62,7 +63,7 @@ class PetDAO
   public function buscarPetPorId(string $idPet)
   {
     try {
-      $sql = "SELECT p.*, e.nomeEsp, e.porteEsp, t.tipoTem, t.energiaTem FROM Pet p JOIN Especie e ON (e.idEsp = p.idEsp) JOIN Temperamento t ON (t.idTem = p.idTem) WHERE idPet = ?";
+      $sql = "SELECT p.*, e.nomeEsp, e.porteEsp, t.tipoTem, t.energiaTem, r.nomeRaca FROM Pet p JOIN Especie e ON (e.idEsp = p.idEsp) JOIN Temperamento t ON (t.idTem = p.idTem) LEFT JOIN Raca r on (r.idRaca = p.idRaca) WHERE idPet = ?";
       $stm = $this->conexao->prepare($sql);
       $stm->execute([$idPet]);
       $pet = $stm->fetchAll();
@@ -81,9 +82,9 @@ class PetDAO
   public function alterarInformacoesPet(Pet $pet)
   {
     try {
-      $sql = "UPDATE Pet SET nomePet = ?, sexoPet = ?, descricaoPet = ?, temRacaPet = ?, idEsp = ?, idTem = ?, linkImagemPet = ? WHERE idPet = ?";
+      $sql = "UPDATE Pet SET nomePet = ?, sexoPet = ?, descricaoPet = ?, idEsp = ?, idTem = ?, linkImagemPet = ?, idRaca = ? WHERE idPet = ?";
       $stm = $this->conexao->prepare($sql);
-      $stm->execute([$pet->getNomePet(), $pet->getSexoPet(), $pet->getDescricaoPet(), $pet->getTemRacaPet() ? 1 : 0, $pet->getEspecie()->getIdEsp(), $pet->getTemperamento()->getIdTem(), $pet->getLinkImagemPet(), $pet->getIdPet()]);
+      $stm->execute([$pet->getNomePet(), $pet->getSexoPet(), $pet->getDescricaoPet(), $pet->getEspecie()->getIdEsp(), $pet->getTemperamento()->getIdTem(), $pet->getLinkImagemPet(), $pet->getRaca()->getIdRaca(), $pet->getIdPet()]);
 
       return null;
     } catch (PDOException $e) {
@@ -111,13 +112,14 @@ class PetDAO
     foreach ($pets as $pet) {
       $especie = new Especie($pet["idEsp"], $pet["nomeEsp"], $pet["porteEsp"]);
       $temperamento = new Temperamento($pet["idTem"], $pet["tipoTem"], $pet["energiaTem"]);
+      $raca = $pet["idRaca"] ? new Raca($pet["idRaca"], $pet["nomeRaca"]) : null;
 
       // Somente o nome e id são necessários para a página principal.
       if ($precisaDeAcolhedor) {
         $acolhedor = new Usuario($pet["idUsu"], $pet["nomeUsu"], null, null, null, null, null, null, null, null, null, null);
-        $petMapeado = new Pet($pet["idPet"], $pet["nomePet"], $pet["sexoPet"], $pet["descricaoPet"], $pet["temRacaPet"], $especie, $temperamento, $pet["linkImagemPet"], $acolhedor);
+        $petMapeado = new Pet($pet["idPet"], $pet["nomePet"], $pet["sexoPet"], $pet["descricaoPet"], $especie, $temperamento, $pet["linkImagemPet"], $acolhedor, $raca ? $raca : null, null);
       } else {
-        $petMapeado = new Pet($pet["idPet"], $pet["nomePet"], $pet["sexoPet"], $pet["descricaoPet"], $pet["temRacaPet"], $especie, $temperamento, $pet["linkImagemPet"], null);
+        $petMapeado = new Pet($pet["idPet"], $pet["nomePet"], $pet["sexoPet"], $pet["descricaoPet"], $especie, $temperamento, $pet["linkImagemPet"], null, $raca ? $raca : null, null);
       }
 
       array_push($petsMapeados, $petMapeado);

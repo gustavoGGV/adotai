@@ -4,7 +4,7 @@ include_once(__DIR__ . "/acoes/entrar.php");
 include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
 
 if ($usuario && !$usuario->getBanidoUsu()) {
-  header("location: /adotai/view/pagina-principal.php");
+  header("location: " . URL_BASE . "/view/pagina-principal.php");
 }
 ?>
 

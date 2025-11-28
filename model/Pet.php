@@ -6,23 +6,25 @@ class Pet
   private ?string $nomePet;
   private ?string $sexoPet;
   private ?string $descricaoPet;
-  private ?bool $temRacaPet;
   private ?Especie $especie;
   private ?Temperamento $temperamento;
   private ?string $linkImagemPet;
   private ?Usuario $acolhedor;
+  private ?Raca $raca;
+  private ?bool $temRaca;
 
-  public function __construct($idPet, $nomePet, $sexoPet, $descricaoPet, $temRacaPet, $especie, $temperamento, $linkImagemPet, $acolhedor)
+  public function __construct($idPet, $nomePet, $sexoPet, $descricaoPet, $especie, $temperamento, $linkImagemPet, $acolhedor, $raca, $temRaca)
   {
     $this->idPet = $idPet;
     $this->nomePet = $nomePet;
     $this->sexoPet = $sexoPet;
     $this->descricaoPet = $descricaoPet;
-    $this->temRacaPet = $temRacaPet;
     $this->especie = $especie;
     $this->temperamento = $temperamento;
     $this->linkImagemPet = $linkImagemPet;
     $this->acolhedor = $acolhedor;
+    $this->raca = $raca;
+    $this->temRaca = $temRaca;
   }
 
   public function getIdPet(): ?int
@@ -45,11 +47,6 @@ class Pet
     return $this->descricaoPet;
   }
 
-  public function getTemRacaPet(): ?bool
-  {
-    return $this->temRacaPet;
-  }
-
   public function getEspecie(): ?Especie
   {
     return $this->especie;
@@ -68,5 +65,15 @@ class Pet
   public function getAcolhedor(): ?Usuario
   {
     return $this->acolhedor;
+  }
+
+  public function getRaca(): ?Raca
+  {
+    return $this->raca;
+  }
+
+  public function getTemRaca(): ?bool
+  {
+    return $this->temRaca;
   }
 }

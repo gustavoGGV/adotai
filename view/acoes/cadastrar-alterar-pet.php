@@ -24,15 +24,14 @@ if (isset($_GET["idPet"])) {
 if (isset($_POST["input-nome-pet"])) {
   $nomePet = trim($_POST["input-nome-pet"]) ? trim($_POST["input-nome-pet"]) : null;
   $sexoPet = trim($_POST["select-sexo-pet"]) ? trim($_POST["select-sexo-pet"]) : null;
-  $temRacaPet = isset($_POST["select-raca-pet"]) ? intval(trim($_POST["select-raca-pet"])) : null;
 
-  if ($temRacaPet) {
-    if ($temRacaPet === 1) {
-      $temRacaPet = true;
-    } else {
-      $temRacaPet = false;
-    }
+  $temRaca = $_POST["select-tem-raca-pet"] === "1" ? true : false;
+  if (!isset($_POST["select-tem-raca-pet"])) {
+    $temRaca = null;
   }
+
+  $idRaca = isset($_POST["select-raca-pet"]) ? intval(trim($_POST["select-raca-pet"])) : null;
+  $raca = new Raca($idRaca, null, null);
 
   $idEsp = trim($_POST["select-especie-pet"]) ? trim($_POST["select-especie-pet"]) : null;
   $especie = new Especie($idEsp, null, null);
@@ -44,16 +43,16 @@ if (isset($_POST["input-nome-pet"])) {
   $descricaoPet = trim($_POST["input-descricao-pet"]) ? trim($_POST["input-descricao-pet"]) : null;
 
   if (!isset($_GET["idPet"])) {
-    include_once(__DIR__ . "/adquirir-informacao-do-usuario.php");
+    // include_once(__DIR__ . "/adquirir-informacao-do-usuario.php");
 
     if (!$usuario) {
-      header("location: /adotai/view/pagina-principal.php");
+      header("location: " . URL_BASE . "/view/pagina-principal.php");
     }
 
     $acolhedor = new Usuario($usuario->getIdUsu(), $usuario->getNomeUsu(), null, null, null, null, null, null, null, null, null, null);
-    $cadastro = new Pet(null, $nomePet, $sexoPet, $descricaoPet, $temRacaPet, $especie, $temperamento, $linkImagemPet, $acolhedor);
+    $cadastro = new Pet(null, $nomePet, $sexoPet, $descricaoPet, $especie, $temperamento, $linkImagemPet, $acolhedor, $raca, $temRaca);
   } else {
-    $cadastro = new Pet($_GET["idPet"], $nomePet, $sexoPet, $descricaoPet, $temRacaPet, $especie, $temperamento, $linkImagemPet, null);
+    $cadastro = new Pet($_GET["idPet"], $nomePet, $sexoPet, $descricaoPet, $especie, $temperamento, $linkImagemPet, null, $raca, $temRaca);
   }
 
   $invalidades = null;

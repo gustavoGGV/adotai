@@ -22,10 +22,6 @@ class PetService
       array_push($invalidades, "Insira uma descrição do pet!");
     }
 
-    if ($pet->getTemRacaPet() === null) {
-      array_push($invalidades, "Selecione se o pet tem raça ou não!");
-    }
-
     if (!$pet->getEspecie()->getIdEsp()) {
       array_push($invalidades, "Selecione a espécie do pet!");
     }
@@ -36,6 +32,14 @@ class PetService
 
     if (!$pet->getLinkImagemPet()) {
       array_push($invalidades, "Insira o endereço de uma imagem do pet!");
+    }
+
+    if ($pet->getTemRaca() === null) {
+      array_push($invalidades, "Selecione se o pet tem raça ou não!");
+    } else if ($pet->getTemRaca() === true) {
+      if (!$pet->getRaca()->getIdRaca()) {
+        array_push($invalidades, "Selecione a raça do pet!");
+      }
     }
 
     return $invalidades;

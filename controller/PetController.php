@@ -37,7 +37,7 @@ class PetController
 
     $erro = $this->petDAO->inserirPet($pet);
     if ($erro) {
-      array_push($invalidades, "Erro ao salvar o usuário no banco de dados");
+      array_push($invalidades, "Erro ao salvar o pet no banco de dados");
       if (AMBIENTE_DEV) {
         array_push($invalidades, $erro);
       }

@@ -124,12 +124,12 @@ if (!isset($_GET["idUsu"])) {
                           <p class="text-break"><?= $pet->getSexoPet() === "m" ? "masculino" : "feminino" ?></p>
                         </div>
                         <div class="d-flex">
-                          <p class="fw-bold me-1">Tem raça:</p>
-                          <p class="text-break"><?= $pet->getTemRacaPet() ? "sim" : "não" ?></p>
-                        </div>
-                        <div class="d-flex">
                           <p class="fw-bold me-1">Espécie:</p>
                           <p class="text-break"><?= $pet->getEspecie()->listarEspecie() ?></p>
+                        </div>
+                        <div class="d-flex">
+                          <p class="fw-bold me-1">Raça:</p>
+                          <p class="text-break"><?= $pet->getRaca() ? $pet->getRaca() : "não possui" ?></p>
                         </div>
                         <div class="d-flex">
                           <p class="fw-bold me-1">Temperamento:</p>

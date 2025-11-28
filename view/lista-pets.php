@@ -28,8 +28,8 @@ include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
               <th>ID</th>
               <th>Nome</th>
               <th>Sexo</th>
-              <th>É de raça?</th>
               <th>Espécie</th>
+              <th>Raça</th>
               <th>Temperamento</th>
               <th>Descrição</th>
               <th>Link da imagem</th>
@@ -45,8 +45,8 @@ include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
                 <td><?= $pet->getIdPet() ?></td>
                 <td><?= $pet->getNomePet() ?></td>
                 <td><?= $pet->getSexoPet() === "m" ? "Masculino" : "Feminino" ?></td>
-                <td><?= $pet->getTemRacaPet() ? "Sim" : "Não" ?></td>
                 <td><?= $pet->getEspecie()->listarEspecie() ?></td>
+                <td><?= $pet->getRaca() ? $pet->getRaca() : "Não tem" ?></td>
                 <td><?= $pet->getTemperamento()->listarTemperamento() ?></td>
                 <td><?= $pet->getDescricaoPet() ?></td>
                 <td><a href="<?= $pet->getLinkImagemPet() ?>" class="text-decoration-none" target="_blank">Imagem do pet</a></td>

@@ -33,7 +33,9 @@ footer,
 .botao-pagina-principal,
 .botao-pagina-principal:hover,
 .botao-cadastrar-pet,
-.botao-cadastrar-pet:hover {
+.botao-cadastrar-pet:hover,
+.botao-cadastrar-pet-ajax,
+.botao-cadastrar-pet-ajax:hover {
   background-color: #382110;
 }
 
