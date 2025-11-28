@@ -20,7 +20,7 @@ include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
   ?>
   <div class="flex-fill">
     <div class="container">
-      <h4><a href="/adotai/view/pagina-principal.php" class="text-black text-decoration-none"><i class="bi bi-caret-left-fill"></i>Voltar</a></h4>
+      <h4><a href="<?= URL_BASE ?>/view/pagina-principal.php" class="text-black text-decoration-none"><i class="bi bi-caret-left-fill"></i>Voltar</a></h4>
       <div class="table-responsive mt-5">
         <table class="table table-bordered">
           <thead>
@@ -50,9 +50,9 @@ include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
                 <td><?= $pet->getTemperamento()->listarTemperamento() ?></td>
                 <td><?= $pet->getDescricaoPet() ?></td>
                 <td><a href="<?= $pet->getLinkImagemPet() ?>" class="text-decoration-none" target="_blank">Imagem do pet</a></td>
-                <td><a class="text-decoration-none" href="/adotai/view/pagina-usuario.php/?idUsu=<?= $pet->getAcolhedor()->getIdUsu() ?>" target="_blank">Página do acolhedor</a></td>
+                <td><a class="text-decoration-none" href="<?= URL_BASE ?>/view/pagina-usuario.php/?idUsu=<?= $pet->getAcolhedor()->getIdUsu() ?>" target="_blank">Página do acolhedor</a></td>
                 <td>
-                  <a class="text-white text-decoration-none bg-danger fs-3 ps-1 pe-1 rounded-3" href="/adotai/view/acoes/deletar-pet.php/?idPet=<?= $pet->getIdPet() ?>" onclick="return confirm('Deseja mesmo deletar o pet <?= $pet->getNomePet() ?>?')">
+                  <a class="text-white text-decoration-none bg-danger fs-3 ps-1 pe-1 rounded-3" href="<?= URL_BASE ?>/view/acoes/deletar-pet.php/?idPet=<?= $pet->getIdPet() ?>" onclick="return confirm('Deseja mesmo deletar o pet <?= $pet->getNomePet() ?>?')">
                     <i class="bi bi-x-octagon"></i>
                   </a>
                 </td>

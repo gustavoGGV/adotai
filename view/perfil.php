@@ -4,9 +4,9 @@ include_once(__DIR__ . "/acoes/alterar-cadastro.php");
 include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
 
 if (!$usuario) :
-  header("location: /adotai/view/login.php");
+  header("location " . URL_BASE . "view/login.php");
 elseif ($usuario->getBanidoUsu()) :
-  header("location: /adotai/view/acoes/deslogar.php");
+  header("location " . URL_BASE . "view/acoes/deslogar.php");
 else :
 ?>
   <title>Adotaí | Perfil</title>
@@ -19,7 +19,7 @@ else :
     <form action="" method="post" class="container d-flex flex-lg-row flex-column flex-fill">
       <div class="imagem-perfil-usuario col-lg-3 col-12">
         <div class="imagem-usuario-container d-flex justify-content-center">
-          <img src="/adotai/util/user-cachorro.png" id="imagem-perfil" class="w-lg-75 ms-lg-2">
+          <img src="<?= URL_BASE ?>/util/user-cachorro.png" id="imagem-perfil" class="w-lg-75 ms-lg-2">
         </div>
         <div class="selecionar-imagem-perfil d-flex justify-content-center mt-4">
           <span class="text-black">Cachorro</span>
@@ -71,10 +71,10 @@ else :
         <?php endif; ?>
         <div class="mt-5 col-12 d-flex flex-column align-items-center justify-content-center">
           <button class="botao-alterar col-lg-4 col-8 btn text-white" id="botao-alterar" type="submit">Alterar informações</button>
-          <a href="/adotai/view/acoes/deslogar.php" class="bg-danger col-lg-4 col-8 mt-4 text-white btn">
+          <a href="<?= URL_BASE ?>/view/acoes/deslogar.php" class="bg-danger col-lg-4 col-8 mt-4 text-white btn">
             Sair
           </a>
-          <a href="/adotai/view/acoes/excluir-conta.php/?idUsu=<?= $usuario->getIdUsu() ?>" class="bg-danger col-lg-4 col-8 mt-4 text-white btn" onclick="return confirm('Deseja mesmo deletar sua conta?')">
+          <a href="<?= URL_BASE ?>/view/acoes/excluir-conta.php/?idUsu=<?= $usuario->getIdUsu() ?>" class="bg-danger col-lg-4 col-8 mt-4 text-white btn" onclick="return confirm('Deseja mesmo deletar sua conta?')">
             Excluir conta
           </a>
         </div>
@@ -135,21 +135,21 @@ else :
     const inputImagemGato = document.getElementById("input-imagem-gato");
 
     if (inputImagemCachorro.checked) {
-      imagemPefil.src = "/adotai/util/user-cachorro.png";
+      imagemPefil.src = "<?= URL_BASE ?>/util/user-cachorro.png";
     } else {
-      imagemPefil.src = "/adotai/util/user-gato.png";
+      imagemPefil.src = "<?= URL_BASE ?>/util/user-gato.png";
     }
 
     inputImagemCachorro.addEventListener("change", () => {
       if (inputImagemCachorro.checked) {
-        imagemPefil.src = "/adotai/util/user-cachorro.png";
+        imagemPefil.src = "<?= URL_BASE ?>/util/user-cachorro.png";
         inputImagemGato.checked = false;
       }
     })
 
     inputImagemGato.addEventListener("change", () => {
       if (inputImagemGato.checked) {
-        imagemPefil.src = "/adotai/util/user-gato.png";
+        imagemPefil.src = "<?= URL_BASE ?>/util/user-gato.png";
         inputImagemCachorro.checked = false;
       }
     })

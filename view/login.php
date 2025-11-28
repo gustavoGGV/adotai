@@ -13,7 +13,7 @@ if ($usuario && !$usuario->getBanidoUsu()) {
 
 <body>
   <section class="container elementos-entrar d-flex flex-column align-items-center">
-    <img src="/adotai/util/logo-inteira.png" class="col-lg-2 col-4">
+    <img src="<?= URL_BASE ?>/util/logo-inteira.png" class="col-lg-2 col-4">
     <div class="d-flex justify-content-center p-3 w-100">
       <div class="entrar card col-lg-4 col-10">
         <div class="cabeca-entrar card-header text-white">
@@ -36,7 +36,7 @@ if ($usuario && !$usuario->getBanidoUsu()) {
                 </div>
               <?php endif; ?>
               <div class="mt-3 col-12">
-                <a href="/adotai/view/cadastro.php" class="text-white text-decoration-none">Não é cadastrado?</a><br>
+                <a href="<?= URL_BASE ?>/view/cadastro.php" class="text-white text-decoration-none">Não é cadastrado?</a><br>
                 <a href="" class="text-white text-decoration-none">Esqueceu sua senha?</a>
               </div>
               <div class="mt-4 col-6">

@@ -9,9 +9,9 @@ include_once(__DIR__ . "/acoes/adquirir-informacoes-dos-pets.php");
 include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
 
 if (!$usuario):
-  header("location: /adotai/view/login.php");
+  header("location: " . URL_BASE . "view/login.php");
 elseif ($usuario->getBanidoUsu()):
-  header("location: /adotai/view/acoes/deslogar.php");
+  header("location: " . URL_BASE . "view/acoes/deslogar.php");
 else:
 ?>
   <title>Adotaí | Pagina principal</title>
@@ -23,19 +23,19 @@ else:
     <div class="flex-fill">
       <div class="container">
         <div class="p-3 d-flex">
-          <a href="/adotai/view/pets-proprios.php" class="me-3 text-decoration-none">
+          <a href="<?= URL_BASE ?>/view/pets-proprios.php" class="me-3 text-decoration-none">
             <button class="botao-pagina-principal btn text-white text-decoration-none">Meus pets</button>
           </a>
-          <a href="/adotai/view/cadastro-pet.php" class="me-3 text-decoration-none">
+          <a href="<?= URL_BASE ?>/view/cadastro-pet.php" class="me-3 text-decoration-none">
             <button class="botao-pagina-principal btn text-white text-decoration-none">Cadastrar pet</button>
           </a>
           <?php
           if ($usuario->getTipousu() === "a"):
           ?>
-            <a href="/adotai/view/lista-usuarios.php" class="me-3 text-decoration-none">
+            <a href="<?= URL_BASE ?>/view/lista-usuarios.php" class="me-3 text-decoration-none">
               <button class="botao-pagina-principal btn text-white text-decoration-none">Lista de usuários</button>
             </a>
-            <a href="/adotai/view/lista-pets.php" class="me-3 text-decoration-none">
+            <a href="<?= URL_BASE ?>/view/lista-pets.php" class="me-3 text-decoration-none">
               <button class="botao-pagina-principal btn text-white text-decoration-none">Lista de pets</button>
             </a>
           <?php
@@ -86,7 +86,7 @@ else:
                   </div>
                   <div class="d-flex">
                     <p class="fw-bold me-1">Acolhedor:</p>
-                    <a href="/adotai/view/pagina-usuario.php/?idUsu=<?= $pet->getAcolhedor()->getIdUsu() ?>" class="text-white text-break"><?= $pet->getAcolhedor()->getNomeUsu() ?></a>
+                    <a href="<?= URL_BASE ?>/view/pagina-usuario.php/?idUsu=<?= $pet->getAcolhedor()->getIdUsu() ?>" class="text-white text-break"><?= $pet->getAcolhedor()->getNomeUsu() ?></a>
                   </div>
                 </div>
               </div>

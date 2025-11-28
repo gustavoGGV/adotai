@@ -3,7 +3,7 @@
 require_once(__DIR__ . "/../../controller/UsuarioController.php");
 
 if (!isset($_GET["idUsu"]) || !isset($_GET["banir"])) {
-  header("location: /adotai/view/pagina-principal.php");
+  header("location " . URL_BASE . "view/pagina-principal.php");
 } else {
   $usuarioController = new UsuarioController();
   $erro = $usuarioController->banirOuDesbanirUsuario($_GET["idUsu"], intval($_GET["banir"]));
@@ -15,6 +15,6 @@ if (!isset($_GET["idUsu"]) || !isset($_GET["banir"])) {
       echo $erro;
     }
   } else {
-    header("location: /adotai/view/pagina-principal.php");
+    header("location " . URL_BASE . "view/pagina-principal.php");
   }
 }

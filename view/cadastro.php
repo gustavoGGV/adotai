@@ -4,7 +4,7 @@ include_once(__DIR__ . "/acoes/adquirir-informacao-do-usuario.php");
 include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
 
 if ($usuario) {
-  header("location: /adotai/view/pagina-principal.php");
+  header("location: " . URL_BASE  . "/view/pagina-principal.php");
 }
 ?>
 
@@ -13,12 +13,12 @@ if ($usuario) {
 
 <body>
   <section class="container elementos-cadastrar d-flex flex-column align-items-center">
-    <img src="/adotai/util/logo-inteira.png" class="col-lg-2 col-4">
+    <img src="<?= URL_BASE ?>/util/logo-inteira.png" class="col-lg-2 col-4">
     <div class="d-flex justify-content-center p-3 w-100 mb-5">
       <div class="cadastrar card col-lg-8 col-10">
         <div class="cabeca-cadastrar card-header text-white d-flex justify-content-between align-items-center">
           <h1>Cadastrar-se</h1>
-          <h4><a href="/adotai/view/login.php" class="float-end text-white text-decoration-none"><i class="bi bi-caret-left-fill"></i>Voltar</a></h4>
+          <h4><a href="<?= URL_BASE ?>/view/login.php" class="float-end text-white text-decoration-none"><i class="bi bi-caret-left-fill"></i>Voltar</a></h4>
         </div>
         <div class="card-body d-flex justify-content-center p-4">
           <div class="form-group w-100">

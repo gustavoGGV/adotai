@@ -36,7 +36,7 @@ include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
 
   <div class="flex-fill">
     <div class="container">
-      <h4><a href="/adotai/view/pagina-principal.php" class="text-black text-decoration-none"><i class="bi bi-caret-left-fill"></i>Voltar</a></h4>
+      <h4><a href="<?= URL_BASE ?>/view/pagina-principal.php" class="text-black text-decoration-none"><i class="bi bi-caret-left-fill"></i>Voltar</a></h4>
     </div>
     <form action="" method="post" class="container d-flex flex-column">
       <div class="mt-3 mb-3">

@@ -7,13 +7,13 @@ include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
 $dadosDoPerfilAcessado = null;
 
 if (!$usuario) {
-  header("location: /adotai/view/login.php");
+  header("location " . URL_BASE . "view/login.php");
 } else if ($usuario->getBanidoUsu()) {
-  header("location: /adotai/view/acoes/deslogar.php");
+  header("location " . URL_BASE . "view/acoes/deslogar.php");
 }
 
 if (!isset($_GET["idUsu"])) {
-  header("location: /adotai/view/pagina-principal.php");
+  header("location " . URL_BASE . "view/pagina-principal.php");
 } else {
   $usuarioController = new UsuarioController();
   $dadosDoPerfilAcessado = $usuarioController->encontrarUsuarioPorId($_GET["idUsu"]);
@@ -51,7 +51,7 @@ if (!isset($_GET["idUsu"])) {
       if ($usuario && $usuario->getTipoUsu() === "a" && $usuario->getIdUsu() != $dadosDoPerfilAcessado->getIdUsu() && $dadosDoPerfilAcessado->getTipoUsu() === "c"):
         if (!$dadosDoPerfilAcessado->getBanidoUsu()):
       ?>
-          <a href="/adotai/view/acoes/banir-desbanir.php/?idUsu=<?= $dadosDoPerfilAcessado->getIdUsu() ?>&banir=1">
+          <a href="<?= URL_BASE ?>/view/acoes/banir-desbanir.php/?idUsu=<?= $dadosDoPerfilAcessado->getIdUsu() ?>&banir=1">
             <button class="btn bg-danger mb-4 text-white text-decoration-none" onclick="return confirm('Deseja mesmo banir o usuário <?= $dadosDoPerfilAcessado->getNomeUsu() ?>?')">
               Banir usuário
             </button>
@@ -59,7 +59,7 @@ if (!isset($_GET["idUsu"])) {
         <?php
         else:
         ?>
-          <a href="/adotai/view/acoes/banir-desbanir.php/?idUsu=<?= $dadosDoPerfilAcessado->getIdUsu() ?>&banir=0">
+          <a href="<?= URL_BASE ?>/view/acoes/banir-desbanir.php/?idUsu=<?= $dadosDoPerfilAcessado->getIdUsu() ?>&banir=0">
             <button class="btn bg-danger mb-4 text-white text-decoration-none" onclick="return confirm('Deseja mesmo desbanir o usuário <?= $dadosDoPerfilAcessado->getNomeUsu() ?>?')">
               Desbanir <?= $dadosDoPerfilAcessado->getNomeUsu() ?>
             </button>
@@ -78,7 +78,7 @@ if (!isset($_GET["idUsu"])) {
         ?>
         <div class="card">
           <div class="imagem-perfil-acessado card-body p-4 d-flex justify-content-center">
-            <img src="/adotai/util/<?= $dadosDoPerfilAcessado->getTipoImagemPerfilUsu() === "g" ? "user-gato.png" : "user-cachorro.png" ?>" class="img-fluid col-xxl-2 col-lg-3 col-4">
+            <img src="<?= URL_BASE ?>/util/<?= $dadosDoPerfilAcessado->getTipoImagemPerfilUsu() === "g" ? "user-gato.png" : "user-cachorro.png" ?>" class="img-fluid col-xxl-2 col-lg-3 col-4">
           </div>
           <hr>
           <div class="dados-perfil-acessado card-body p-4">

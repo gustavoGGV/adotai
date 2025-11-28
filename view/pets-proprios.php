@@ -4,9 +4,9 @@ include_once(__DIR__ . "/acoes/adquirir-informacoes-dos-pets-do-usuario.php");
 include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
 
 if (!$usuario) {
-  header("location: /adotai/view/login.php");
+  header("location " . URL_BASE . "view/login.php");
 } else if ($usuario->getBanidoUsu()) {
-  header("location: /adotai/view/acoes/deslogar.php");
+  header("location " . URL_BASE . "view/acoes/deslogar.php");
 }
 ?>
 <title>Adotaí | Meus Pets</title>
@@ -18,7 +18,7 @@ if (!$usuario) {
   <div class="flex-fill">
     <div class="container">
       <div class="p-3">
-        <h4><a href="/adotai/view/pagina-principal.php" class="text-black text-decoration-none"><i class="bi bi-caret-left-fill"></i>Voltar</a></h4>
+        <h4><a href="<?= URL_BASE ?>/view/pagina-principal.php" class="text-black text-decoration-none"><i class="bi bi-caret-left-fill"></i>Voltar</a></h4>
       </div>
     </div>
 
@@ -41,8 +41,8 @@ if (!$usuario) {
             <div class="card-pet card">
               <div class="cabeca-card-pet card-header p-4">
                 <div class="d-flex mb-4">
-                  <a class="text-white text-decoration-none bg-warning fs-3 ps-1 pe-1 rounded-3" href="/adotai/view/cadastro-pet.php/?idPet=<?= $pet->getIdPet() ?>"><i class="bi bi-pencil-square"></i></a>
-                  <a class="ms-2 text-white text-decoration-none bg-danger fs-3 ps-1 pe-1 rounded-3" href="/adotai/view/acoes/deletar-pet.php/?idPet=<?= $pet->getIdPet() ?>" onclick="return confirm('Deseja mesmo deletar o pet <?= $pet->getNomePet() ?>?')"><i class="bi bi-x-octagon"></i></a>
+                  <a class="text-white text-decoration-none bg-warning fs-3 ps-1 pe-1 rounded-3" href="<?= URL_BASE ?>/view/cadastro-pet.php/?idPet=<?= $pet->getIdPet() ?>"><i class="bi bi-pencil-square"></i></a>
+                  <a class="ms-2 text-white text-decoration-none bg-danger fs-3 ps-1 pe-1 rounded-3" href="<?= URL_BASE ?>/view/acoes/deletar-pet.php/?idPet=<?= $pet->getIdPet() ?>" onclick="return confirm('Deseja mesmo deletar o pet <?= $pet->getNomePet() ?>?')"><i class="bi bi-x-octagon"></i></a>
                 </div>
                 <a href="<?= $pet->getLinkImagemPet() ?>" target="_blank" class="d-flex justify-content-center">
                   <img src="<?= $pet->getLinkImagemPet() ?>" class="imagem-pet img-fluid rounded-2 w-100">
