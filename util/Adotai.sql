@@ -15,8 +15,8 @@ CREATE TABLE Especie (
 
 CREATE TABLE Raca (
     idRaca INT PRIMARY KEY AUTO_INCREMENT,
-    nomeRaca VARCHAR(50) NOT NULL, 
-    idEsp INT NOT NULL,    
+    nomeRaca VARCHAR(50) NOT NULL,
+    idEsp INT NOT NULL,
     FOREIGN KEY(idEsp) REFERENCES Especie(idEsp)
 );
 
@@ -66,12 +66,6 @@ INSERT INTO Temperamento VALUES
 (3, "Arisco", "m"),
 (4, "Calmo", "b");
 
-INSERT INTO Pet VALUES
-(1, "Rexstone", "m", "Carinhoso, brincalhão com as crianças. Vacinado e sadio.", 2, 2, "https://s2-g1.glbimg.com/TdPTg4jg3ZqtmZtyFnuHehXLgmk=/0x314:720x1073/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2019/B/x/gU7r6UTvyFwLn5G5FlUg/whatsapp-image-2019-02-22-at-14.53.02.jpeg", 67, null),
-(2, "Pedro", "m", "Extrovertido quando quer, contido. Não-vacinado e sadio.", 6, 4, "https://i.redd.it/6awu42gnlasc1.jpeg", 67, null),
-(3, "Florinda", "f", "Bem arisca, foi vítima de maus-tratos. Vacinada, mas é bem raivosa e fraca.", 5, 3, "https://preview.redd.it/z1seq6b71d851.jpg?width=1080&crop=smart&auto=webp&s=a52fe92b54bb99e8d3ec15d0562c1437e7eb437c", 67, null),
-(4, "Joaninha", "f", "uito carentinha, dócil, excelente companheira. Sadia e vacinada, é filhote de Bulldog.", 1, 2, "https://www.chefbob.com.br/cdn/shop/articles/2020-05-08-como-cuidar-de-uma-cadelinha-no-cio_jpg.webp?v=1756847533", 67, 6);
-
 -- Cães de pequeno porte
 INSERT INTO Raca (nomeRaca, idEsp) VALUES ('Poodle', 1);
 INSERT INTO Raca (nomeRaca, idEsp) VALUES ('Shih Tzu', 1);
@@ -104,3 +98,11 @@ INSERT INTO Raca (nomeRaca, idEsp) VALUES ('Bengal', 5);
 INSERT INTO Raca (nomeRaca, idEsp) VALUES ('Exótico', 6);
 INSERT INTO Raca (nomeRaca, idEsp) VALUES ('Ragdoll', 6);
 INSERT INTO Raca (nomeRaca, idEsp) VALUES ('Maine Coon', 6);
+
+
+-- Pets
+INSERT INTO Pet VALUES
+(1, "Rexstone", "m", "Carinhoso, brincalhão com as crianças. Vacinado e sadio.", 2, 2, "https://s2-g1.glbimg.com/TdPTg4jg3ZqtmZtyFnuHehXLgmk=/0x314:720x1073/984x0/smart/filters:strip_icc()/i.s3.glbimg.com/v1/AUTH_59edd422c0c84a879bd37670ae4f538a/internal_photos/bs/2019/B/x/gU7r6UTvyFwLn5G5FlUg/whatsapp-image-2019-02-22-at-14.53.02.jpeg", 67, null),
+(2, "Pedro", "m", "Extrovertido quando quer, contido. Não-vacinado e sadio.", 6, 4, "https://i.redd.it/6awu42gnlasc1.jpeg", 67, null),
+(3, "Florinda", "f", "Bem arisca, foi vítima de maus-tratos. Vacinada, mas é bem raivosa e fraca.", 5, 3, "https://preview.redd.it/z1seq6b71d851.jpg?width=1080&crop=smart&auto=webp&s=a52fe92b54bb99e8d3ec15d0562c1437e7eb437c", 67, null),
+(4, "Joaninha", "f", "uito carentinha, dócil, excelente companheira. Sadia e vacinada, é filhote de Bulldog.", 1, 2, "https://www.chefbob.com.br/cdn/shop/articles/2020-05-08-como-cuidar-de-uma-cadelinha-no-cio_jpg.webp?v=1756847533", 67, 6);
