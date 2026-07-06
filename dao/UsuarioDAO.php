@@ -21,10 +21,9 @@ class UsuarioDAO
 
         try {
             $sql =
-                "INSERT INTO usuario (idusu, nomeusu, datanascimentousu, cepusu, complementousu, senhausu, telefoneusu, tipousu, tipoimagemperfilusu, banidousu) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                "INSERT INTO usuario (nomeusu, datanascimentousu, cepusu, complementousu, senhausu, telefoneusu, tipousu, tipoimagemperfilusu, banidousu) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
             $stm = $this->conexao->prepare($sql);
             $stm->execute([
-                $usuario->getIdUsu(),
                 $usuario->getNomeUsu(),
                 $usuario->getDataNascimentoUsu(),
                 $usuario->getCepUsu(),

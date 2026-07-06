@@ -56,10 +56,9 @@ class PetDAO
     {
         try {
             $sql =
-                "INSERT INTO pet (idpet, nomepet, sexopet, descricaopet, idesp, idtem, linkimagempet, idusu, idraca) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)";
+                "INSERT INTO pet (nomepet, sexopet, descricaopet, idesp, idtem, linkimagempet, idusu, idraca) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
             $stm = $this->conexao->prepare($sql);
             $stm->execute([
-                $pet->getIdPet(),
                 $pet->getNomePet(),
                 $pet->getSexoPet(),
                 $pet->getDescricaoPet(),
