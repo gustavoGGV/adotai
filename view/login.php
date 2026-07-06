@@ -1,10 +1,10 @@
 <?php
-include_once(__DIR__ . "/acoes/adquirir-informacao-do-usuario.php");
-include_once(__DIR__ . "/acoes/entrar.php");
-include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
+include_once __DIR__ . "/acoes/adquirir-informacao-do-usuario.php";
+include_once __DIR__ . "/acoes/entrar.php";
+include_once __DIR__ . "/componentes/configuracao-da-pagina.html";
 
 if ($usuario && !$usuario->getBanidoUsu()) {
-  header("location: " . URL_BASE . "/view/pagina-principal.php");
+    header("location: " . URL_BASE . "/view/pagina-principal.php");
 }
 ?>
 
@@ -24,7 +24,9 @@ if ($usuario && !$usuario->getBanidoUsu()) {
             <form action="" method="post" class="d-flex flex-column align-items-center">
               <div class="col-12">
                 <span class="text-white col-6">Número de telefone</span>
-                <input value="<?= $numero ? $numero : null ?>" type="text" id="input-numero" name="input-numero" placeholder="informe seu número..." class="col-12 form-control">
+                <input value="<?= $numero
+                    ? $numero
+                    : null ?>" type="text" id="input-numero" name="input-numero" placeholder="informe seu número..." class="col-12 form-control">
               </div>
               <div class="mt-4 col-12">
                 <span class="text-white">Senha</span>
