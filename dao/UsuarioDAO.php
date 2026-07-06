@@ -204,9 +204,9 @@ class UsuarioDAO
             $sql = "SELECT * FROM usuario WHERE telefoneusu = ?";
             $stm = $this->conexao->prepare($sql);
             $stm->execute([$telefoneUsu]);
-            $usuario = $stm->fetchall();
+            $usuario = $stm->fetch();
 
-            if (count($usuario) > 0 && count($usuario) < 2) {
+            if ($usuario) {
                 $usuarioMapeado = $this->mapearUsuarios($usuario);
 
                 if (password_verify($usuarioMapeado[0]->getIdUsu(), $hashId)) {

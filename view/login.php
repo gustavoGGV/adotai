@@ -2,13 +2,6 @@
 include_once __DIR__ . "/acoes/adquirir-informacao-do-usuario.php";
 include_once __DIR__ . "/acoes/entrar.php";
 
-var_dump($_COOKIE);
-var_dump($usuario);
-
-if (headers_sent($file, $line)) {
-    die("Headers already sent em $file:$line");
-}
-
 if ($usuario && !$usuario->getBanidoUsu()) {
     header("location: " . URL_BASE . "/view/pagina-principal.php");
 
