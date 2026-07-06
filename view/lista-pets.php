@@ -1,21 +1,18 @@
 <?php
 
-include_once(__DIR__ . "/acoes/adquirir-informacao-do-usuario.php");
-include_once(__DIR__ . "/acoes/adquirir-informacoes-dos-pets.php");
-include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
-
+include_once __DIR__ . "/acoes/adquirir-informacao-do-usuario.php";
+include_once __DIR__ . "/acoes/adquirir-informacoes-dos-pets.php";
+include_once __DIR__ . "/componentes/configuracao-da-pagina.html";
 ?>
 <title>Adotaí | Lista de usuários</title>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
   <?php
-  include_once(__DIR__ . "/componentes/navbar.html");
+  include_once __DIR__ . "/componentes/navbar.html";
 
   if (!$pets):
-    echo "<h1>Sem pets!</h1>";
-
-    return;
+      echo "<h1>Sem pets!</h1>";
   endif;
   ?>
   <div class="flex-fill">
@@ -38,28 +35,28 @@ include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
             </tr>
           </thead>
           <tbody>
-            <?php
-            foreach ($pets as $pet):
-            ?>
+            <?php foreach ($pets as $pet): ?>
               <tr>
                 <td><?= $pet->getIdPet() ?></td>
                 <td><?= $pet->getNomePet() ?></td>
-                <td><?= $pet->getSexoPet() === "m" ? "Masculino" : "Feminino" ?></td>
+                <td><?= $pet->getSexoPet() === "m"
+                    ? "Masculino"
+                    : "Feminino" ?></td>
                 <td><?= $pet->getEspecie()->listarEspecie() ?></td>
                 <td><?= $pet->getRaca() ? $pet->getRaca() : "Não tem" ?></td>
                 <td><?= $pet->getTemperamento()->listarTemperamento() ?></td>
                 <td><?= $pet->getDescricaoPet() ?></td>
                 <td><a href="<?= $pet->getLinkImagemPet() ?>" class="text-decoration-none" target="_blank">Imagem do pet</a></td>
-                <td><a class="text-decoration-none" href="<?= URL_BASE ?>/view/pagina-usuario.php/?idUsu=<?= $pet->getAcolhedor()->getIdUsu() ?>" target="_blank">Página do acolhedor</a></td>
+                <td><a class="text-decoration-none" href="<?= URL_BASE ?>/view/pagina-usuario.php/?idUsu=<?= $pet
+    ->getAcolhedor()
+    ->getIdUsu() ?>" target="_blank">Página do acolhedor</a></td>
                 <td>
                   <a class="text-white text-decoration-none bg-danger fs-3 ps-1 pe-1 rounded-3" href="<?= URL_BASE ?>/view/acoes/deletar-pet.php/?idPet=<?= $pet->getIdPet() ?>" onclick="return confirm('Deseja mesmo deletar o pet <?= $pet->getNomePet() ?>?')">
                     <i class="bi bi-x-octagon"></i>
                   </a>
                 </td>
               </tr>
-            <?php
-            endforeach;
-            ?>
+            <?php endforeach; ?>
           </tbody>
         </table>
       </div>
@@ -67,5 +64,4 @@ include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
   </div>
 </body>
 
-<?php
-include_once(__DIR__ . "/componentes/footer.html");
+<?php include_once __DIR__ . "/componentes/footer.html";

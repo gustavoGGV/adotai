@@ -34,8 +34,6 @@ if (!$usuario) {
           echo "</div>";
           echo "</div>";
           include_once __DIR__ . "/componentes/footer.html";
-
-          return;
       else:
            ?>
         <?php

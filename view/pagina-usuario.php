@@ -27,8 +27,6 @@ if (!isset($_GET["idUsu"])) {
 
     if ($dadosDoPerfilAcessado instanceof PDOException) {
         echo "<h1>Este usuário não existe.</h1>";
-
-        return;
     }
 
     $petController = new PetController();
@@ -54,8 +52,6 @@ include_once __DIR__ . "/componentes/configuracao-da-pagina.html";
           echo "</div>";
           echo "</div>";
           include_once __DIR__ . "/componentes/footer.html";
-
-          return;
       endif;
       if (
           $usuario &&
@@ -82,8 +78,6 @@ include_once __DIR__ . "/componentes/configuracao-da-pagina.html";
           echo "</div>";
           echo "</div>";
           include_once __DIR__ . "/componentes/footer.html";
-
-          return;
       else:
            ?>
         <div class="card">

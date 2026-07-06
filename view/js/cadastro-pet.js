@@ -15,7 +15,7 @@ selTemRaca.addEventListener("change", function () {
     xhr.open(
       "GET",
       URL_BASE + "/api/racas_por_especie.php?idEspecie=" + idEspecie,
-      true
+      true,
     );
 
     // Necessário para atualizar o select só com a mudança do campo "tem racça?".
@@ -44,14 +44,16 @@ selTemRaca.addEventListener("change", function () {
       // Limpa o select de raças
       selRaca.innerHTML = '<option value="">Escolha a raça...</option>';
 
-      if (!idEspecie) return; // nada selecionado, sai
+      if (!idEspecie) {
+        die(); // nada selecionado, sai
+      }
 
       // AJAX
       const xhr = new XMLHttpRequest();
       xhr.open(
         "GET",
         URL_BASE + "/api/racas_por_especie.php?idEspecie=" + idEspecie,
-        true
+        true,
       );
 
       xhr.onload = function () {
@@ -87,7 +89,7 @@ function salvarPetAjax() {
   const temRacaPet = selTemRaca.value;
   const racaPet = selRaca.value;
   const temperamentoPet = document.querySelector(
-    "#select-temperamento-pet"
+    "#select-temperamento-pet",
   ).value;
   const linkImagemPet = document.querySelector("#input-imagem-pet").value;
   const descricaoPet = document.querySelector("#input-descricao-pet").value;

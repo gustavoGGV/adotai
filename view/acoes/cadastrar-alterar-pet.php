@@ -17,7 +17,7 @@ if (isset($_GET["idPet"])) {
     if ($cadastro instanceof PDOException) {
         echo "<h2>Erro na alteração do pet no banco.</h2>";
 
-        return;
+        die();
     }
 }
 
