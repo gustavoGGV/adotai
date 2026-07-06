@@ -1,21 +1,22 @@
 <?php
-include_once(__DIR__ . "/acoes/adquirir-informacao-do-usuario.php");
-include_once(__DIR__ . "/acoes/alterar-cadastro.php");
-include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
+include_once __DIR__ . "/acoes/adquirir-informacao-do-usuario.php";
+include_once __DIR__ . "/acoes/alterar-cadastro.php";
 
-if (!$usuario) :
-  header("location " . URL_BASE . "/view/login.php");
-elseif ($usuario->getBanidoUsu()) :
-  header("location " . URL_BASE . "/view/acoes/deslogar.php");
-else :
-?>
+if (!$usuario):
+    header("location " . URL_BASE . "/view/login.php");
+
+    exit();
+elseif ($usuario->getBanidoUsu()):
+    header("location " . URL_BASE . "/view/acoes/deslogar.php");
+
+    exit();
+else:
+    include_once __DIR__ . "/componentes/configuracao-da-pagina.html"; ?>
   <title>Adotaí | Perfil</title>
   </head>
 
   <body class="d-flex flex-column min-vh-100">
-    <?php
-    include_once(__DIR__ . "/componentes/navbar.html");
-    ?>
+    <?php include_once __DIR__ . "/componentes/navbar.html"; ?>
     <form action="" method="post" class="container d-flex flex-lg-row flex-column flex-fill">
       <div class="imagem-perfil-usuario col-lg-3 col-12">
         <div class="imagem-usuario-container d-flex justify-content-center">
@@ -23,9 +24,15 @@ else :
         </div>
         <div class="selecionar-imagem-perfil d-flex justify-content-center mt-4">
           <span class="text-black">Cachorro</span>
-          <input type="radio" value="c" name="input-imagem-cachorro" id="input-imagem-cachorro" class="ms-1" <?= $usuario->getTipoImagemPerfilUsu() === "c" ? "checked" : null ?>>
+          <input type="radio" value="c" name="input-imagem-cachorro" id="input-imagem-cachorro" class="ms-1" <?= $usuario->getTipoImagemPerfilUsu() ===
+          "c"
+              ? "checked"
+              : null ?>>
           <span class="text-black ms-3">Gato</span>
-          <input type="radio" value="g" name="input-imagem-gato" id="input-imagem-gato" class="ms-1" <?= $usuario->getTipoImagemPerfilUsu() === "g" ? "checked" : null ?>>
+          <input type="radio" value="g" name="input-imagem-gato" id="input-imagem-gato" class="ms-1" <?= $usuario->getTipoImagemPerfilUsu() ===
+          "g"
+              ? "checked"
+              : null ?>>
         </div>
       </div>
       <div class="vr d-none d-lg-block col-1"></div>
@@ -81,9 +88,7 @@ else :
       </div>
     </form>
   </body>
-  <?php
-  include_once(__DIR__ . "/componentes/footer.html");
-  ?>
+  <?php include_once __DIR__ . "/componentes/footer.html"; ?>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
   <script>

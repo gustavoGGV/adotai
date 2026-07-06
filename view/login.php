@@ -1,11 +1,14 @@
 <?php
 include_once __DIR__ . "/acoes/adquirir-informacao-do-usuario.php";
 include_once __DIR__ . "/acoes/entrar.php";
-include_once __DIR__ . "/componentes/configuracao-da-pagina.html";
 
 if ($usuario && !$usuario->getBanidoUsu()) {
     header("location: " . URL_BASE . "/view/pagina-principal.php");
+
+    exit();
 }
+
+include_once __DIR__ . "/componentes/configuracao-da-pagina.html";
 ?>
 
 <title>Adotaí | Entrar</title>

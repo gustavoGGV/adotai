@@ -1,19 +1,25 @@
 <?php
-include_once(__DIR__ . "/acoes/adquirir-informacao-do-usuario.php");
-include_once(__DIR__ . "/acoes/adquirir-informacoes-dos-pets-do-usuario.php");
-include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
+include_once __DIR__ . "/acoes/adquirir-informacao-do-usuario.php";
+include_once __DIR__ . "/acoes/adquirir-informacoes-dos-pets-do-usuario.php";
+include_once __DIR__ . "/componentes/configuracao-da-pagina.html";
 
 if (!$usuario) {
-  header("location: " . URL_BASE . "/view/login.php");
-} else if ($usuario->getBanidoUsu()) {
-  header("location: " . URL_BASE . "/view/acoes/deslogar.php");
+    header("location: " . URL_BASE . "/view/login.php");
+
+    exit();
+} elseif ($usuario->getBanidoUsu()) {
+    header("location: " . URL_BASE . "/view/acoes/deslogar.php");
+
+    exit();
+} else {
+    include_once __DIR__ . "/componentes/configuracao-da-pagina.html";
 }
 ?>
 <title>Adotaí | Meus Pets</title>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-  <?php include_once(__DIR__ . "/componentes/navbar.html") ?>
+  <?php include_once __DIR__ . "/componentes/navbar.html"; ?>
 
   <div class="flex-fill">
     <div class="container">
@@ -23,20 +29,18 @@ if (!$usuario) {
     </div>
 
     <div class="container-lg d-flex flex-lg-row flex-column align-items-center">
-      <?php
-      if (!$pets):
-        echo "<h1 class='fw-bold mt-5'>Nenhum pet encontrado!</h1>";
-        echo "</div>";
-        echo "</div>";
-        include_once(__DIR__ . "/componentes/footer.html");
+      <?php if (!$pets):
+          echo "<h1 class='fw-bold mt-5'>Nenhum pet encontrado!</h1>";
+          echo "</div>";
+          echo "</div>";
+          include_once __DIR__ . "/componentes/footer.html";
 
-        return;
+          return;
       else:
-      ?>
+           ?>
         <?php
         $numeroDeCards = 0;
-        foreach ($pets as $pet):
-        ?>
+        foreach ($pets as $pet): ?>
           <div class="p-3 col-lg-4 col-11">
             <div class="card-pet card">
               <div class="cabeca-card-pet card-header p-4">
@@ -54,19 +58,27 @@ if (!$usuario) {
                 </div>
                 <div class="d-flex">
                   <p class="fw-bold me-1">Sexo:</p>
-                  <p class="text-break"><?= $pet->getSexoPet() === "m" ? "masculino" : "feminino" ?></p>
+                  <p class="text-break"><?= $pet->getSexoPet() === "m"
+                      ? "masculino"
+                      : "feminino" ?></p>
                 </div>
                 <div class="d-flex">
                   <p class="fw-bold me-1">Espécie:</p>
-                  <p class="text-break"><?= $pet->getEspecie()->listarEspecie() ?></p>
+                  <p class="text-break"><?= $pet
+                      ->getEspecie()
+                      ->listarEspecie() ?></p>
                 </div>
                 <div class="d-flex">
                   <p class="fw-bold me-1">Raça:</p>
-                  <p class="text-break"><?= $pet->getRaca() ? $pet->getRaca() : "não possui" ?></p>
+                  <p class="text-break"><?= $pet->getRaca()
+                      ? $pet->getRaca()
+                      : "não possui" ?></p>
                 </div>
                 <div class="d-flex">
                   <p class="fw-bold me-1">Temperamento:</p>
-                  <p class="text-break"><?= $pet->getTemperamento()->listarTemperamento() ?></p>
+                  <p class="text-break"><?= $pet
+                      ->getTemperamento()
+                      ->listarTemperamento() ?></p>
                 </div>
                 <div class="d-flex">
                   <p class="fw-bold me-1">Descrição:</p>
@@ -76,17 +88,16 @@ if (!$usuario) {
             </div>
           </div>
         <?php
-          $numeroDeCards++;
+        $numeroDeCards++;
 
-          if ($numeroDeCards === 3) {
+        if ($numeroDeCards === 3) {
             echo "</div>\n<div class='container-lg d-flex flex-lg-row flex-column align-items-center'>";
             $numeroDeCards = 0;
-          }
+        }
         endforeach;
         ?>
     </div>
   </div>
 </body>
-<?php
-        include_once(__DIR__ . "/componentes/footer.html");
+<?php include_once __DIR__ . "/componentes/footer.html";
       endif;

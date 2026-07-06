@@ -1,84 +1,97 @@
 <?php
-require_once(__DIR__ . "/../controller/UsuarioController.php");
-require_once(__DIR__ . "/../controller/PetController.php");
-include_once(__DIR__ . "/acoes/adquirir-informacao-do-usuario.php");
-include_once(__DIR__ . "/componentes/configuracao-da-pagina.html");
+require_once __DIR__ . "/../controller/UsuarioController.php";
+require_once __DIR__ . "/../controller/PetController.php";
+include_once __DIR__ . "/acoes/adquirir-informacao-do-usuario.php";
 
 $dadosDoPerfilAcessado = null;
 
 if (!$usuario) {
-  header("location " . URL_BASE . "/view/login.php");
-} else if ($usuario->getBanidoUsu()) {
-  header("location " . URL_BASE . "/view/acoes/deslogar.php");
+    header("location " . URL_BASE . "/view/login.php");
+
+    exit();
+} elseif ($usuario->getBanidoUsu()) {
+    header("location " . URL_BASE . "/view/acoes/deslogar.php");
+
+    exit();
 }
 
 if (!isset($_GET["idUsu"])) {
-  header("location " . URL_BASE . "/view/pagina-principal.php");
+    header("location " . URL_BASE . "/view/pagina-principal.php");
+
+    exit();
 } else {
-  $usuarioController = new UsuarioController();
-  $dadosDoPerfilAcessado = $usuarioController->encontrarUsuarioPorId($_GET["idUsu"]);
+    $usuarioController = new UsuarioController();
+    $dadosDoPerfilAcessado = $usuarioController->encontrarUsuarioPorId(
+        $_GET["idUsu"],
+    );
 
-  if ($dadosDoPerfilAcessado instanceof PDOException) {
-    echo "<h1>Este usuário não existe.</h1>";
+    if ($dadosDoPerfilAcessado instanceof PDOException) {
+        echo "<h1>Este usuário não existe.</h1>";
 
-    return;
-  }
+        return;
+    }
 
-  $petController = new PetController();
-  $petsAcolhidosPeloPerfilAcessado = $petController->buscarPetsPorIdDeUsuário($_GET["idUsu"]);
+    $petController = new PetController();
+    $petsAcolhidosPeloPerfilAcessado = $petController->buscarPetsPorIdDeUsuário(
+        $_GET["idUsu"],
+    );
 }
+
+include_once __DIR__ . "/componentes/configuracao-da-pagina.html";
 ?>
 
 <title>Adotaí | Usuário</title>
 </head>
 
 <body class="d-flex flex-column min-vh-100">
-  <?php
-  include_once(__DIR__ . "/componentes/navbar.html");
-  ?>
+  <?php include_once __DIR__ . "/componentes/navbar.html"; ?>
 
   <div class="flex-fill">
     <div class="container d-flex flex-column">
       <?php
       if (!$dadosDoPerfilAcessado):
-        echo "<h1>Usuário não encontrado!</h1>";
-        echo "</div>";
-        echo "</div>";
-        include_once(__DIR__ . "/componentes/footer.html");
+          echo "<h1>Usuário não encontrado!</h1>";
+          echo "</div>";
+          echo "</div>";
+          include_once __DIR__ . "/componentes/footer.html";
 
-        return;
+          return;
       endif;
-      if ($usuario && $usuario->getTipoUsu() === "a" && $usuario->getIdUsu() != $dadosDoPerfilAcessado->getIdUsu() && $dadosDoPerfilAcessado->getTipoUsu() === "c"):
-        if (!$dadosDoPerfilAcessado->getBanidoUsu()):
-      ?>
+      if (
+          $usuario &&
+          $usuario->getTipoUsu() === "a" &&
+          $usuario->getIdUsu() != $dadosDoPerfilAcessado->getIdUsu() &&
+          $dadosDoPerfilAcessado->getTipoUsu() === "c"
+      ):
+          if (!$dadosDoPerfilAcessado->getBanidoUsu()): ?>
           <a href="<?= URL_BASE ?>/view/acoes/banir-desbanir.php/?idUsu=<?= $dadosDoPerfilAcessado->getIdUsu() ?>&banir=1">
             <button class="btn bg-danger mb-4 text-white text-decoration-none" onclick="return confirm('Deseja mesmo banir o usuário <?= $dadosDoPerfilAcessado->getNomeUsu() ?>?')">
               Banir usuário
             </button>
           </a>
-        <?php
-        else:
-        ?>
+        <?php else: ?>
           <a href="<?= URL_BASE ?>/view/acoes/banir-desbanir.php/?idUsu=<?= $dadosDoPerfilAcessado->getIdUsu() ?>&banir=0">
             <button class="btn bg-danger mb-4 text-white text-decoration-none" onclick="return confirm('Deseja mesmo desbanir o usuário <?= $dadosDoPerfilAcessado->getNomeUsu() ?>?')">
               Desbanir <?= $dadosDoPerfilAcessado->getNomeUsu() ?>
             </button>
           </a>
-        <?php
-        endif;
+        <?php endif;
       endif;
       if ($dadosDoPerfilAcessado->getBanidoUsu()):
-        echo "<h1>Este usuário está banido.</h1>";
-        echo "</div>";
-        echo "</div>";
-        include_once(__DIR__ . "/componentes/footer.html");
+          echo "<h1>Este usuário está banido.</h1>";
+          echo "</div>";
+          echo "</div>";
+          include_once __DIR__ . "/componentes/footer.html";
 
-        return;
+          return;
       else:
-        ?>
+           ?>
         <div class="card">
           <div class="imagem-perfil-acessado card-body p-4 d-flex justify-content-center">
-            <img src="<?= URL_BASE ?>/util/<?= $dadosDoPerfilAcessado->getTipoImagemPerfilUsu() === "g" ? "user-gato.png" : "user-cachorro.png" ?>" class="img-fluid col-xxl-2 col-lg-3 col-4">
+            <img src="<?= URL_BASE ?>/util/<?= $dadosDoPerfilAcessado->getTipoImagemPerfilUsu() ===
+"g"
+    ? "user-gato.png"
+    : "user-cachorro.png" ?>" class="img-fluid col-xxl-2 col-lg-3 col-4">
           </div>
           <hr>
           <div class="dados-perfil-acessado card-body p-4">
@@ -96,20 +109,20 @@ if (!isset($_GET["idUsu"])) {
             </div>
             <div class="d-flex">
               <h2 class="fw-bold me-3">Tipo de usuário:</h2>
-              <h2><?= $dadosDoPerfilAcessado->getTipoUsu() === "c" ? "comum" : "administrador" ?></h2>
+              <h2><?= $dadosDoPerfilAcessado->getTipoUsu() === "c"
+                  ? "comum"
+                  : "administrador" ?></h2>
             </div>
           </div>
           <hr>
           <div class="pets-acolhidos-pelo-perfil-acessado p-4">
             <h2 class="fw-bold">Pets acolhidos:</h2>
             <div class="container-lg d-flex flex-lg-row flex-column justify-content-between align-items-center">
-              <?php
-              if (!$petsAcolhidosPeloPerfilAcessado):
-                echo "<h2>Nenhum pet encontrado.</h2>";
+              <?php if (!$petsAcolhidosPeloPerfilAcessado):
+                  echo "<h2>Nenhum pet encontrado.</h2>";
               else:
-                $numeroDeCards = 0;
-                foreach ($petsAcolhidosPeloPerfilAcessado as $pet):
-              ?>
+                  $numeroDeCards = 0;
+                  foreach ($petsAcolhidosPeloPerfilAcessado as $pet): ?>
                   <div class="p-3 col-lg-4 col-11">
                     <div class="card-pet card">
                       <a href="<?= $pet->getLinkImagemPet() ?>" target="_blank" class="cabeca-card-pet card-header p-4 d-flex justify-content-center">
@@ -121,19 +134,27 @@ if (!isset($_GET["idUsu"])) {
                         </div>
                         <div class="d-flex">
                           <p class="fw-bold me-1">Sexo:</p>
-                          <p class="text-break"><?= $pet->getSexoPet() === "m" ? "masculino" : "feminino" ?></p>
+                          <p class="text-break"><?= $pet->getSexoPet() === "m"
+                              ? "masculino"
+                              : "feminino" ?></p>
                         </div>
                         <div class="d-flex">
                           <p class="fw-bold me-1">Espécie:</p>
-                          <p class="text-break"><?= $pet->getEspecie()->listarEspecie() ?></p>
+                          <p class="text-break"><?= $pet
+                              ->getEspecie()
+                              ->listarEspecie() ?></p>
                         </div>
                         <div class="d-flex">
                           <p class="fw-bold me-1">Raça:</p>
-                          <p class="text-break"><?= $pet->getRaca() ? $pet->getRaca() : "não possui" ?></p>
+                          <p class="text-break"><?= $pet->getRaca()
+                              ? $pet->getRaca()
+                              : "não possui" ?></p>
                         </div>
                         <div class="d-flex">
                           <p class="fw-bold me-1">Temperamento:</p>
-                          <p class="text-break"><?= $pet->getTemperamento()->listarTemperamento() ?></p>
+                          <p class="text-break"><?= $pet
+                              ->getTemperamento()
+                              ->listarTemperamento() ?></p>
                         </div>
                         <div class="d-flex">
                           <p class="fw-bold me-1">Descrição:</p>
@@ -143,15 +164,17 @@ if (!isset($_GET["idUsu"])) {
                     </div>
                   </div>
               <?php
-                  $numeroDeCards++;
+              $numeroDeCards++;
 
-                  if ($numeroDeCards === 3 && count($petsAcolhidosPeloPerfilAcessado) % 3 != 0) {
-                    echo "</div>\n<div class='container-lg d-flex flex-lg-row flex-column justify-content-between align-items-center'>";
-                    $numeroDeCards = 0;
-                  }
-                endforeach;
-              endif;
-              ?>
+              if (
+                  $numeroDeCards === 3 &&
+                  count($petsAcolhidosPeloPerfilAcessado) % 3 != 0
+              ) {
+                  echo "</div>\n<div class='container-lg d-flex flex-lg-row flex-column justify-content-between align-items-center'>";
+                  $numeroDeCards = 0;
+              }
+              endforeach;
+              endif; ?>
             </div>
           </div>
         </div>
@@ -162,7 +185,6 @@ if (!isset($_GET["idUsu"])) {
   </div>
 </body>
 
-<?php
-if (!$dadosDoPerfilAcessado->getBanidoUsu()) {
-  include_once(__DIR__ . "/componentes/footer.html");
+<?php if (!$dadosDoPerfilAcessado->getBanidoUsu()) {
+    include_once __DIR__ . "/componentes/footer.html";
 }
