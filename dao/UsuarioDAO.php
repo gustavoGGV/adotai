@@ -164,11 +164,19 @@ class UsuarioDAO
     public function deletarUsuarioPorId(string $idUsu)
     {
         try {
-            // Como os pets possuem a relação com a conta do usuário, também é necessário deletá-los.
-            $sql =
-                "DELETE FROM pet WHERE idusu = ?; DELETE FROM usuario WHERE idusu = ?";
+            $this->conexao->beginTransaction();
+
+            // Deleta os pets.
+            $sql = "DELETE FROM pet WHERE idusu = ?";
             $stm = $this->conexao->prepare($sql);
-            $stm->execute([$idUsu, $idUsu]);
+            $stm->execute([$idUsu]);
+
+            // Deleta o usuário.
+            $sql = "DELETE FROM usuario WHERE idusu = ?";
+            $stm = $this->conexao->prepare($sql);
+            $stm->execute([$idUsu]);
+
+            $this->conexao->commit();
 
             return null;
         } catch (PDOException $e) {
